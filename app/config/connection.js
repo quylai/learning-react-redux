@@ -1,6 +1,10 @@
+
+
+
 var Sequelize = require("sequelize");
 
-var sequelize = new Sequelize("sequelize_chirpy", "root", "", {
+// table setup
+var sequelize = new Sequelize("sequelize_chirpy", "root", "root", {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
@@ -12,3 +16,6 @@ var sequelize = new Sequelize("sequelize_chirpy", "root", "", {
 });
 
 module.exports = sequelize;
+
+
+

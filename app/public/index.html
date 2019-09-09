@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Chirpy!</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- jQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Moment.js -->
@@ -18,28 +18,108 @@
   <body>
 
     <div class="jumbotron">
-      <h1 class="text-center">Chirpy!</h1>
+      <h1 class="text-center">Customer Info Page</h1>
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <p class="cool-font">Name</p>
-          <input class="form-control" type="text" id="author" placeholder="Enter Your Name">
-          <br>
-          <p class="cool-font">Chirp</p>
-          <textarea class="form-control" rows="3" id="chirp-box" placeholder="Enter Chirp Here!"></textarea>
-          <button id="chirp-submit" class="btn btn-lg pull-right">Submit!</button>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">First name</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="First">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Last name</label>
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Last">
+          </div>
         </div>
-      </div>
+        <!-- guest-name, lic #, lic state -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="guestName">User name</label>
+            <input type="text" class="form-control" id="guestName">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="plateNumber">Lic. plate number</label>
+            <input type="text" class="form-control" id="plateNumber">
+          </div>   
+          <div class="form-group col-md-3">
+            <label for="plateState">Lic. plate state</label>
+            <select id="plateState" class="form-control">
+              <option selected>Choose...</option>
+              <option value="AL">AL</option>
+              <option value="AK">AK</option>
+              <option value="AR">AR</option>	
+              <option value="AZ">AZ</option>
+              <option value="CA">CA</option>
+              <option value="CO">CO</option>
+              <option value="CT">CT</option>
+              <option value="DC">DC</option>
+              <option value="DE">DE</option>
+              <option value="FL">FL</option>
+              <option value="GA">GA</option>
+              <option value="HI">HI</option>
+              <option value="IA">IA</option>	
+              <option value="ID">ID</option>
+              <option value="IL">IL</option>
+              <option value="IN">IN</option>
+              <option value="KS">KS</option>
+              <option value="KY">KY</option>
+              <option value="LA">LA</option>
+              <option value="MA">MA</option>
+              <option value="MD">MD</option>
+              <option value="ME">ME</option>
+              <option value="MI">MI</option>
+              <option value="MN">MN</option>
+              <option value="MO">MO</option>	
+              <option value="MS">MS</option>
+              <option value="MT">MT</option>
+              <option value="NC">NC</option>	
+              <option value="NE">NE</option>
+              <option value="NH">NH</option>
+              <option value="NJ">NJ</option>
+              <option value="NM">NM</option>			
+              <option value="NV">NV</option>
+              <option value="NY">NY</option>
+              <option value="ND">ND</option>
+              <option value="OH">OH</option>
+              <option value="OK">OK</option>
+              <option value="OR">OR</option>
+              <option value="PA">PA</option>
+              <option value="RI">RI</option>
+              <option value="SC">SC</option>
+              <option value="SD">SD</option>
+              <option value="TN">TN</option>
+              <option value="TX">TX</option>
+              <option value="UT">UT</option>
+              <option value="VT">VT</option>
+              <option value="VA">VA</option>
+              <option value="WA">WA</option>
+              <option value="WI">WI</option>	
+              <option value="WV">WV</option>
+              <option value="WY">WY</option>
+            </select>
+          </div>        
+        </div>
+        <!-- Car Information: make, model, color -->
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="carMake">Make</label>
+            <input type="text" class="form-control" id="carMake">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="carModel">Model</label>
+            <input type="text" class="form-control" id="carModel">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="carColor">Color</label>
+            <input type="text" class="form-control" id="carColor">
+          </div>
+        </div>
+        <!---->
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
 
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <h2>Chirps</h2>
-          <hr>
-          <div id="chirp-area"></div>
-        </div>
-      </div>
     </div>
 
   <script type="text/javascript" src="js/chirp.js"></script>
