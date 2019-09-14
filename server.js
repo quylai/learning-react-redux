@@ -1,19 +1,19 @@
+const express = require("express");
+const path = require("path");
+const PORT = process.env.PORT || 3001;
+const app = express();
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
-
-var express = require("express");
-var app = express();
-// port value "process.env.PORT || 8080" formatted for Heroku 
-var PORT = process.env.PORT || 8080;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("app/public")); // targeting index.html @ app/public
-
-require("./app/routes/api-routes.js")(app); // api-routes.js as router of app
-
-app.listen(PORT, function() {  // listener
-  console.log("App listening on PORT " + PORT);
+// Send every request to the React app
+// Define any API routes before this runs
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-//---------------------------------------------------------------------------------
+app.listen(PORT, function() {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
