@@ -1,4 +1,8 @@
-import React, { Component } from "react";
+//---------------------------------------------------------------------------------
+
+
+
+import React, { Component } from "react";  // for using "class...extends..."
 import "./style.css";
 
 class Form extends Component {
@@ -10,19 +14,20 @@ class Form extends Component {
   };
 
   handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
-    let value = event.target.value;
-    const name = event.target.name;
 
-    if (name === "password") {
+    let value = event.target.value;  // value input's by user
+    const name = event.target.name;  // naming of key
+
+    if (name === "password") {  //?
       value = value.substring(0, 15);
     }
-    // Updating the input's state
+    // let value user inputs associate with its name @ the location in browswer
     this.setState({
       [name]: value
     });
   };
 
+  // codes block when "submit" button pressed
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
@@ -37,14 +42,14 @@ class Form extends Component {
       alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
     }
 
-    this.setState({
+    this.setState({  // clearing input fields
       firstName: "",
       lastName: "",
       password: ""
     });
   };
-
-  render() {
+//---------------------------------------------------------------------------------
+render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <div>
@@ -53,11 +58,11 @@ class Form extends Component {
         </p>
         <form className="form">
           <input
-            value={this.state.firstName}
+            value={this.state.firstName}  // state-value
             name="firstName"
-            onChange={this.handleInputChange}
+            onChange={this.handleInputChange}  // to-do funct when changes
             type="text"
-            placeholder="First Name"
+            placeholder="First Name"           // shadows texts in input field
           />
           <input
             value={this.state.lastName}
