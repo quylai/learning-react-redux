@@ -5,15 +5,16 @@ import React from "react";
 // import FunctionClick from "./components/FunctionClick.js";
 // import ClassClick from "./components/ClassClick.js";
 // import EventBind from "./components/EventBind.js";
-import ParentComponent from "./components/ParentComponent.js";
-
+// import ParentComponent from "./components/ParentComponent.js";
+import UserGreeting from "./components/UserGreeting.js";
 
 
 function App() {
   return( 
     <>
     <div className="App">
-      <ParentComponent />
+      <UserGreeting></UserGreeting>
+      {/* <ParentComponent /> */}
       {/* <Greet name="Diana" heroName="Wonder Woman" /> */}
       {/* <Welcome name="Bruce" heroName="Batman" /> */}
       {/* <FunctionClick /> */}
