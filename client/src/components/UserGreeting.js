@@ -12,7 +12,7 @@ class UserGreeting extends Component {
 
   render() {
 
-    return this.state.isLoggedIn && <div>Welcome Vishwas</div>
+    // return this.state.isLoggedIn && <div>Welcome Vishwas</div>
 
     // return(
     //   this.state.isLoggedIn ?
