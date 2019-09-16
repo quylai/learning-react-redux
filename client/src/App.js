@@ -4,8 +4,8 @@ import React from "react";
 // import Welcome from "./components/Welcome.js";
 // import FunctionClick from "./components/FunctionClick.js";
 // import ClassClick from "./components/ClassClick.js";
-import EventBind from "./components/EventBind.js";
-
+// import EventBind from "./components/EventBind.js";
+import ParentComponent from "./components/ParentComponent.js";
 
 
 
@@ -13,11 +13,12 @@ function App() {
   return( 
     <>
     <div className="App">
+      <ParentComponent />
       {/* <Greet name="Diana" heroName="Wonder Woman" /> */}
       {/* <Welcome name="Bruce" heroName="Batman" /> */}
       {/* <FunctionClick /> */}
       {/* <ClassClick /> */}
-      <EventBind />
+      {/* <EventBind /> */}
 
 
     </div>
