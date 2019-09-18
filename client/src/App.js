@@ -2,16 +2,15 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import Welcome from "./components/Welcome";
+import ParentComponent from "./components/ParentComponent";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Welcome name="Bruce" heroName="Batman" />
+        <ParentComponent />
       </div>
     );
   }
 }
-
 export default App;
