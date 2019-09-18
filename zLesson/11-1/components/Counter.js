@@ -1,4 +1,9 @@
 
+/*---------------------------------------------------------------------------------
+11-1, setState
+counter on browser
+---------------------------------------------------------------------------------*/
+
 import React, { Component } from 'react'
 
 class Counter extends Component {
@@ -10,30 +15,21 @@ class Counter extends Component {
       count: 0
     }
   }
-  
+
   increment() {
-    // this.setState(
-    //   {
-    //     count: this.state.count + 1
-    //   }, 
-    //   () => {
-    //     console.log('consolelog is right now in callback function', this.state.count)
-    //   }
-    // )
 
     this.setState(prevState => ({
       count: prevState.count + 1
     }));
-    
-    console.log(this.state.count);
+    console.log(this.state.count);  // 5
   }
-
+  
   incrementFive() {
-    this.increment()
-    this.increment()
-    this.increment()
-    this.increment()
-    this.increment()
+    this.increment();   // 0
+    this.increment();   // 0 
+    this.increment();   // 0 
+    this.increment();   // 0 
+    this.increment();   // 0
   }
 
   render() {
