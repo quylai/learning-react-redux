@@ -2,13 +2,13 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import ParentComponent from "./components/ParentComponent";
+import Greet from "./components/Greet";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <ParentComponent />
+        <Greet />
       </div>
     );
   }
