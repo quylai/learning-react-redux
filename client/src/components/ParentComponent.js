@@ -1,7 +1,5 @@
-
 import React, { Component } from 'react';
 import ChildComponent from "./ChildComponent";
-
 
 class ParentComponent extends Component {
   
@@ -11,9 +9,11 @@ class ParentComponent extends Component {
     this.state = {
       parentName: "Parent"
     }
+    // bind syntax "this" to function greetParent
     this.greetParent = this.greetParent.bind(this);
   }
   
+  // child calling this function, and passing data thru parameter
   greetParent(childName) {
     alert(`Hello ${this.state.parentName} from ${childName}`);
   }
@@ -26,5 +26,4 @@ class ParentComponent extends Component {
     );
   }
 }
-
 export default ParentComponent;

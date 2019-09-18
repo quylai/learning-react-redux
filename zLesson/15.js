@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------
 // ReactJS Tutorial - 15 - Methods as props
 /*---------------------------------------------------------------------------------
-#1  passing data between child/parent
+#0  passing data between child/parent
 
 ----------------
 App.js
@@ -27,7 +27,6 @@ ParentComponent.js
 
 import React, { Component } from 'react';
 import ChildComponent from "./ChildComponent";
-
 
 class ParentComponent extends Component {
   
@@ -60,7 +59,7 @@ ChildComponent.js
 import React from 'react';
 
 function ChildComponent(props) {
-  return (
+  return(
     <div>
       <button onClick={() => props.greetHandler("child")}>Greet Parent</button>
     </div>
