@@ -1,10 +1,31 @@
 
+//---------------------------------------------------------------------------------
+// ReactJS Tutorial - 11 - setState
 /*---------------------------------------------------------------------------------
-11-1, setState
-counter on browser
----------------------------------------------------------------------------------*/
+#0  setState - a request to update component
 
-import React, { Component } from 'react'
+----------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import Counter from "./components/Counter";
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Counter />
+      </div>
+    );
+  }
+}
+export default App;
+
+----------------
+Counter.js
+
+import React, { Component } from "react"
 
 class Counter extends Component {
 
@@ -41,5 +62,6 @@ class Counter extends Component {
     )
   }
 }
+export default Counter;
 
-export default Counter
+---------------------------------------------------------------------------------*/
