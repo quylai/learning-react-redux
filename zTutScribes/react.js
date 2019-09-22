@@ -1212,6 +1212,46 @@ export default Form;
 }
 
 //---------------------------------------------------------------------------------
+"ReactJS Tutorial - 22 - Component Lifecycle Methods";{
+/*---------------------------------------------------------------------------------
+--------------------------------
+
+- mounting - when an instance of a component is being created and inserted into the DOM
+
+- updating - when a component is being re-rendered as a result of changes to either its props or state
+
+- unmounting - when a component being removed from the DOM
+
+- error handling - when there is an error during rendering, in a lifecyle method, or in the constructor of any child component
+
+MOUNTING
+
+  - constructor
+  - static getDerivedStateFromProps
+  - render
+  - componentDidMount
+
+UPDATING
+
+  - static getDerivedStateFromProps
+  - shouldComponentUpdate
+  - render
+  - getSnapshotBeforeUpdate
+  - componentDidUpdate
+
+UNMOUNTING
+
+  - componentWillUnmount
+
+ERROR HANDLING
+
+  - static getDerivedStateFromError
+  - componentDidCatch
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
 "React Hooks Tutorial - 7 - useEffect after render";{
 /*---------------------------------------------------------------------------------
 #1 useEffect equivalent in class
