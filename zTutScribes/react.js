@@ -18,6 +18,9 @@ App.js
 
 
 ---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------*/
 }
 
 //---------------------------------------------------------------------------------
@@ -1228,8 +1231,8 @@ MOUNTING
 
   - constructor
   - static getDerivedStateFromProps
-  - render
-  - componentDidMount
+  - render()
+  - componentDidMount()
 
 UPDATING
 
@@ -1250,6 +1253,312 @@ ERROR HANDLING
 
 ---------------------------------------------------------------------------------*/
 }
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 23 - Component Mounting Lifecycle Methods";{
+/*---------------------------------------------------------------------------------
+
+- constructor(props) - a special function that will get called whenever a new component is created
+  - initializing state
+  - binding the event handlers
+  - can not cause side effects, such as making http-get/post/...
+  - "super(props)" directly overwrite "this.state"
+
+- static getDerivedStateFromProps
+  - when the state of the component depends on changes in props over time
+  - set the state
+  - can't do http-request
+
+- render() 
+  - a required method in class component
+  - read props & state and return JSX
+  - cannot change state or interact with DOM or make ajax calls
+  - children components lifecycle methods are also executed
+
+- componentDidMount()
+  - invoked immediately after a component and all its children components have been rendered to the DOM
+  - ideal place to interact with DOM or perform http-request
+
+#0 demonstrating the order of execution in mounting phase of a class comp.
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import LifecycleA from "./components/LifecycleA";
+
+class App extends Component {
+  
+  render() {
+    return (
+      <div className="App">
+        <LifecycleA />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+LifecycleA.js
+
+import React, { Component } from "react";
+import LifecycleB from "./LifecycleB";
+
+class LifecycleA extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+    console.log("LifecycleA constructor");
+  }
+  
+  static getDerivedStateFromProps(props, state) {
+    console.log("LifecycleA getDerivedStateFromProps");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("LifecycleA componentDidMount");
+  }
+
+  render() {
+    console.log("LifecycleA render");
+    return(
+      <div>
+        <div>Lifecycle A</div>
+        <LifecycleB></LifecycleB>
+      </div>
+    );
+  }
+}
+export default LifecycleA
+
+--------------------------------
+LifecycleB.js
+
+import React, { Component } from "react";
+
+class LifecycleB extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+    console.log("LifecycleB constructor");
+  }
+  
+  static getDerivedStateFromProps(props, state) {
+    console.log("LifecycleB getDerivedStateFromProps");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("LifecycleB componentDidMount");
+  }
+
+  render() {
+    console.log("LifecycleB render");
+    return(
+      <div>
+        Lifecycle A
+      </div>
+    );
+  }
+}
+export default LifecycleB
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 24 - Component Updating Lifecycle Methods";{
+/*---------------------------------------------------------------------------------
+#1 defining updating phase, demonstrating MOUNTING and UPDATING phase
+
+UPDATING
+
+- static getDerivedStateFromProps(props, state) - rarely use
+  - called every time a component is re-entered
+  - set the state
+  - should not do http-call
+
+- shouldComponentUpdate(nextProps, nextState) - rarely use; expected bool return;
+  - dictates if the component should re-render or not
+  - performance optimization
+  - do not do http-requests, and no setState method
+
+- render() - commonly use
+  - a required method
+  - read props & state and return JSX
+  - no state change and ajax calls
+
+- getSnapshotBeforeUpdate(prevProps, prevState) - rarely use
+  - called right before the changes from the virtual DOM are to be reflected in the DOM
+  - capture some information from the DOM
+  - method will either return null or return a value; returned value will be passed as the third parameter to the next method
+
+- componentDidUpdate(prevProps, prevState, snapshot) - commonly use
+  - called after the render is finished in the re-render cycles
+  - cause side effects allow, meaning http calls allow
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import LifecycleA from "./components/LifecycleA";
+
+class App extends Component {
+  
+  render() {
+    return (
+      <div className="App">
+        <LifecycleA />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import LifecycleB from "./LifecycleB";
+
+class LifecycleA extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+    console.log("LifecycleA constructor");
+  }
+  
+  static getDerivedStateFromProps(props, state) {
+    console.log("LifecycleA getDerivedStateFromProps");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("LifecycleA componentDidMount");
+  }
+
+  shouldComponentUpdate() {
+    console.log("LifecycleA shouldComponentUpdate");
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("LifecycleA getSnapshotBeforeUpdate");
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log("LifecycleA componentDidUpdate");
+  }
+
+  changeState = () => {
+    this.setState({
+      name: "Codevolution"
+    });
+  }
+
+  render() {
+    console.log("LifecycleA render");
+    return(
+      <div>
+        <div>Lifecycle A</div>
+        <button onClick={this.changeState}>Change state</button>
+        <LifecycleB></LifecycleB>
+      </div>
+    );
+  }
+}
+export default LifecycleA
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+
+class LifecycleB extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+    console.log("LifecycleB constructor");
+  }
+  
+  static getDerivedStateFromProps(props, state) {
+    console.log("LifecycleB getDerivedStateFromProps");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("LifecycleB componentDidMount");
+  }
+
+  shouldComponentUpdate() {
+    console.log("LifecycleB shouldComponentUpdate");
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("LifecycleB getSnapshotBeforeUpdate");
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log("LifecycleB componentDidUpdate");
+  }
+
+  render() {
+    console.log("LifecycleB render");
+    return(
+      <div>
+        Lifecycle B
+      </div>
+    );
+  }
+}
+export default LifecycleB
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 defining UNMOUNTING phase and ERROR HANDLING phase 
+
+UNMOUNTING
+
+- componentWillUnmount()
+    - method is invoked immediately before a component is unmounted and destroyed
+    - canceling any network requests, removing event handlers, cancelling any subscriptions and also invalidating timers
+    - cannot do setState method
+
+ERROR HANDLING
+
+- static getDerivedStateFromError(error) and componentDidCatch(error, info)
+  when there is an error during rendering, in a lifecycle method, or in the constructor of any child component
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
+
+
 
 //---------------------------------------------------------------------------------
 "React Hooks Tutorial - 7 - useEffect after render";{
