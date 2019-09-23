@@ -1792,7 +1792,273 @@ never mutate the state; always returns a new object that reflect the new state
 ---------------------------------------------------------------------------------*/
 }
   
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 27 - memo";{
+/*---------------------------------------------------------------------------------
+#0 memo for function, as pure component to class
 
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ParentComp from "./components/ParentComp";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ParentComp />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+ParentComp.js
+
+import React, { Component } from "react";
+import MemoComp from "./MemoComp";
+
+class ParentComp extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+  }
+  
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        name: "Vishwas"
+      })
+    }, 2000);
+  }
+
+  render() {
+    console.log("********Parent Comp render********");
+    return(
+      <div>
+        Parent Component
+        <MemoComp name={this.state.name} />
+      </div>
+    );
+  }
+}
+export default ParentComp;
+
+--------------------------------
+MemoComp.js
+
+import React from "react";
+
+function MemoComp({name}) {
+  return(
+    <div>
+      {name}
+    </div>
+  );
+}
+export default React.memo(MemoComp);
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 28 - Refs";{
+/*---------------------------------------------------------------------------------
+#1 current way to target inputs value
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import RefsDemo from "./components/RefsDemo";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <RefsDemo />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+RefsDemo.js
+
+import React, { Component } from "react";
+class RefsDemo extends Component {
+  
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+    this.cbRef = null
+  }
+  
+  componentDidMount() {
+    this.inputRef.current.focus();  // put cursor @ input when page loaded 
+    console.log(this.inputRef);
+  }
+
+  clickHandler = () => {
+    alert(this.inputRef.current.value);
+  }
+
+  render() {
+
+    return(
+      <div>
+        <input type="text" ref={this.inputRef} />
+        <button onClick={this.clickHandler}>Click</button>
+      </div>
+    );
+  }
+}
+export default RefsDemo;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 legacy ways to target input (did not work, y????)
+
+--------------------------------
+App.js
+
+// same
+
+--------------------------------
+RefsDemo.js
+
+import React, { Component } from "react";
+class RefsDemo extends Component {
+  
+  constructor(props) {
+    super(props)
+    // this.inputRef = React.createRef()
+    this.cbRef = null
+    this.setCbRef = element => {
+      this.cbRef = element
+    }
+  }
+  
+  componentDidMount() {
+    if(this.cbRef) {
+      this.cbRef.focus()
+    }
+  }
+
+  clickHandler = () => {
+    alert(this.cbRef.current.value);
+  }
+
+  render() {
+
+    return(
+      <div>
+        <input type="text" ref={this.inputRef} />
+        <input type="text" ref={this.setCbRef} />
+        <button onClick={this.clickHandler}>Click</button>
+      </div>
+    );
+  }
+}
+export default RefsDemo;
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 29 - Refs with Class Components";{
+/*---------------------------------------------------------------------------------
+#0 accessing class child function using React.createRef()
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import FocusInput from "./components/FocusInput";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <FocusInput />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+FocusInput.js
+
+import React, { Component } from "react";
+import Input from "./Input";
+
+class FocusInput extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.componentRef = React.createRef()
+  }
+  
+  clickHandler = () => {
+    this.componentRef.current.focusInput()
+  }
+
+  render() {
+    return(
+      <div>
+        <Input ref={this.componentRef} />
+        <button onClick={this.clickHandler}>Focus Input</button>
+      </div>
+    );
+  }
+}
+export default FocusInput;
+
+--------------------------------
+Input.js
+
+import React, { Component } from "react";
+class Input extends Component {
+
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
+  
+  focusInput() {
+    this.inputRef.current.focus()
+  }
+
+  render() {
+    return(
+      <div>
+        <input type="text" ref={this.inputRef} />
+      </div>
+    );
+  }
+}
+export default Input;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------*/
+}
 
 
 //---------------------------------------------------------------------------------
