@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import LifecycleA from "./components/LifecycleA";
+import ParentComp from "./components/ParentComp";
 
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
-        <LifecycleA />
+        <ParentComp />
       </div>
     );
   }

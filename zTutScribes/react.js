@@ -1555,8 +1555,243 @@ ERROR HANDLING
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 25 - Fragments";{
+/*---------------------------------------------------------------------------------
+#1 React.Fragment allow multiple children without the need for <div></div> wrapper
 
+--------------------------------
+App.js
 
+import React, { Component } from "react";
+import "./App.css";
+import Table from "./components/Table";
+
+class App extends Component {
+  
+  render() {
+    return (
+      <div className="App">
+        <Table />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+Table.js
+
+import React from "react";
+import Column from "./Column"
+
+function Table() {
+  return(
+<table>
+  <tbody>
+    <tr>
+      <Column />
+    </tr>
+  </tbody>
+</table>
+  );
+}
+export default Table;
+
+--------------------------------
+Column.js
+
+import React from "react";
+
+function Column() {
+  return(
+    <React.Fragment key={item.id}>
+      <td>Name</td>
+      <td>Vishwas</td>
+    </React.Fragment>
+  );
+}
+export default Column;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 empty tags substitute for "React.Fragment"
+
+--------------------------------
+App.js
+
+// same
+
+--------------------------------
+Table.js
+
+// same
+
+--------------------------------
+Column.js
+
+import React from "react";
+
+function Column() {
+  return(
+    <>
+      <td>Name</td>
+      <td>Vishwas</td>
+    </>
+  );
+}
+export default Column;
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 26 - Pure Components";{
+/*---------------------------------------------------------------------------------
+#1 demo of pure component
+
+- regular component
+  does not implement the "shouldComponentUpdate" method; it always returns true by default
+
+----
+
+- pure component
+  implements "shouldComponentUpdate" with a shallow props and state comparison
+  SC of prevState with currentState
+                                      (Difference?)  => re-render comp.
+  SC of prevProps with currentProps
+
+----
+
+* shallow comparison (SC)
+
+  - primitive types
+    a SC b returns true if a and b have the same value and are of the same type
+    Ex: string "Vishwas" SC string "Vishwas" returns true
+
+  - complex types
+    a SC b returns true if a and b reference the exact same object
+    Ex1:
+        var a = [1,2,3];
+        var b = [1,2,3];
+        var a = a;
+        var ab_eq = (a === b);  // false
+        var ac_eq = (a === b);  // true
+
+    Ex2:
+        var a = {x: 1, y: 2};
+        var b = {x: 1, y: 2};
+        var c = a;
+        var ab_eq = (a === b);  // false
+        var ac_eq = (a === b);  // true
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ParentComp from "./components/ParentComp";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ParentComp />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+ParentComp.js
+
+import React, { Component } from "react";
+import RegComp from "./RegComp";
+import PureComp from "./PureComp";
+
+class ParentComp extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      name: "Vishwas"
+    }
+  }
+  
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        name: "Vishwas"
+      })
+    }, 2000);
+  }
+
+  render() {
+    console.log("********Parent Comp render********");
+    return(
+      <div>
+        Parent Component
+        <RegComp name={this.state.name} />
+        <PureComp name={this.state.name} />
+      </div>
+    );
+  }
+}
+export default ParentComp;
+
+--------------------------------
+PureComp.js
+
+import React, { PureComponent } from "react";
+
+class PureComp extends PureComponent {
+  render(){
+    console.log("Pure Comp render");
+    return (
+      <div>
+        Pure Component {this.props.name}
+      </div>
+    );
+  }
+}
+
+export default PureComp;
+
+--------------------------------
+RegComp.js
+
+import React, { Component } from "react";
+
+class RegComp extends Component {
+  render() {
+    console.log("Reg Comp render");
+    return(
+      <div>
+        Regular Component {this.props.name}
+      </div>
+    );
+  }
+}
+export default RegComp;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 summary
+
+we can create a component by extending the PureComponent class; a PureComponent implements the shouldComponentUpdate lifecycle method by performing a shallow comparison on the props and state of the component
+
+if there is no difference, the component is not rerendered - performance boost
+
+it is a good idea to ensure that all the children components are also pure to avoid unexpected behaviour
+
+never mutate the state; always returns a new object that reflect the new state
+
+---------------------------------------------------------------------------------*/
+}
+  
 
 
 
