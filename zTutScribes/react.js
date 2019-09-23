@@ -119,6 +119,63 @@ characteristics of class component:
 }
 
 //---------------------------------------------------------------------------------
+"ReactJS Tutorial - 10 - State";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import Message from "./components/Message";
+
+class App extends Component {
+    
+  render() {
+    return(
+      <div className="App">
+        <Message />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+Message.js
+
+import React, { Component } from "react";
+class Message extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      message: "Welcome visitor"
+    }
+  }
+
+  changeMessage() {
+    this.setState({
+      message: "Thank you for subscribing"
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        <h1>{this.state.message}</h1>
+        <button onClick={() => this.changeMessage()}>Subsribe</button>
+      </div>
+    );
+  }
+}
+export default Message;
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
 "ReactJS Tutorial - 11 - setState";{
 /*---------------------------------------------------------------------------------
 #0 setState - a request to update component
@@ -2053,9 +2110,6 @@ class Input extends Component {
   }
 }
 export default Input;
-
----------------------------------------------------------------------------------*/
-/*---------------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------------*/
 }
