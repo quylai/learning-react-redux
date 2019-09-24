@@ -2558,6 +2558,131 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 34 - Higher Order Components (Part 2)";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+- higher order components (HOC)
+  a pattern where a function takes a component as an argument and returns a new component
+
+      const IronMan = withSuit( TonyStark )
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounter from "./components/ClickCounter";
+import HoverCounter from "./components/HoverCounter";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ClickCounter />
+        <HoverCounter />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+withCounter.js
+
+import React from "react";
+
+const withCounter = WrappedComponent => {
+  class WithCounter extends React.Component {
+
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+        count: 0
+      }
+    }
+    
+    incrementCount = () => {
+      this.setState( prevState => {
+        return { count: prevState.count + 1 }
+      });
+    }
+      
+    render() {
+      return( 
+        <WrappedComponent 
+          count={this.state.count}
+          incrementCount={this.incrementCount} 
+        />
+      );
+    }
+  }
+  return WithCounter;
+}
+
+export default withCounter;
+
+--------------------------------
+ClickCounter.js
+
+import React, { Component } from "react";
+import withCounter from "./withCounter";
+
+class ClickCounter extends Component {
+
+  render() {
+    const { count, incrementCount} = this.props;
+    return(
+      <button onClick={incrementCount}>
+        Click {count} times
+      </button>
+    );
+  }
+}
+
+export default withCounter(ClickCounter);
+
+--------------------------------
+HoverCounter.js
+
+import React, { Component } from "react";
+import withCounter from "./withCounter";
+
+class HoverCounter extends Component {
+
+  render() {
+    const { count, incrementCount} = this.props;
+    return(
+      <h2 onMouseOver={incrementCount}>
+        Hovered {count} times
+      </h2>
+    );
+  }
+}
+
+export default withCounter(HoverCounter);
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- withCounter.js
+  playing the role of HOC; it will wraps ClickCounter and HoverCounter component
+  to give them the incremental capability
+
+- both component [ClickCounter and HoverCounter]:
+  has their props destructured into [count and incrementCount]
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
 
 
 //---------------------------------------------------------------------------------
