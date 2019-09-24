@@ -3152,9 +3152,137 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 38 - Context (Part 1)";{
+/*---------------------------------------------------------------------------------
+#0 ...
 
+context - provides a way to pass data through the component tree without having
+to pass props down manually at every level
 
+---------------------------------------------------------------------------------*/
+}
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 39 - Context (Part 2)";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+Context:
+  - Create the context
+  - Provide a context
+  - Consume the context value
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ComponentC from "./components/ComponentC";
+import { UserProvider } from "./components/userContext";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <UserProvider value="Vishwas">
+          <ComponentC />
+        </UserProvider>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+userContext.js
+
+import React from "react";
+
+const UserContext = React.createContext();
+
+const UserProvider = UserContext.Provider;
+const UserConsumer = UserContext.Consumer;
+
+export { UserProvider, UserConsumer };
+
+--------------------------------
+ComponentC.js
+
+import React, { Component } from "react";
+import ComponentE from "./ComponentE";
+
+class ComponentC extends Component {
+  render() {
+    return <ComponentE />
+  }
+}
+
+export default ComponentC;
+
+--------------------------------
+ComponentE.js
+
+import React, { Component } from "react";
+import ComponentF from "./ComponentF";
+
+class ComponentE extends Component {
+  render() {
+    return <ComponentF />
+  }
+}
+
+export default ComponentE;
+
+--------------------------------
+ComponentF.js
+
+import React, { Component } from "react";
+import { UserConsumer } from "./userContext";
+
+class ComponentF extends Component {
+  render() {
+    return(
+      <UserConsumer>
+        {(username) => {
+          return <div>Hello {username}</div>
+        }}
+      </UserConsumer>
+    );
+  }
+}
+
+export default ComponentF;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- behavior
+  pass data to the inner most component from the outter component; in this case,
+  string "Vishwas" from App component into ComponentF
+  
+- create the context - userContext.js
+
+- import UserProvider to the upmost component (App.js), in its "return", wrap 
+  that next level component with <UserProvider></UserProvider>, supply 
+  UserProvider with attribute "value" and equates it to the data in need to 
+  be pass, in this case "Vishwas"
+
+- import UserConsumer to the innermost component (ComponentF.js), in its "return",
+  spawn a <UserConsumer></UserConsumer>, inserted a child, the child is an arrow
+  function wrapped with {}, this function has an argument (hypothetically call
+  it username), this function has a return of JSX, the content of this JSX is
+  {username} wrapped with <div></div>, {username} is equated to attribute "value"
+  in App.js
+
+- thats all she wrote folks
+
+---------------------------------------------------------------------------------*/
+}
 
 
 //---------------------------------------------------------------------------------
