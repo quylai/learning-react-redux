@@ -2458,7 +2458,105 @@ the console
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 33 - Higher Order Components (Part 1)";{
+/*---------------------------------------------------------------------------------
+#0 ...
 
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounter from "./components/ClickCounter";
+import HoverCounter from "./components/HoverCounter";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ClickCounter />
+        <HoverCounter />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+ClickCounter.js
+
+import React, { Component } from "react";
+class ClickCounter extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState( prevState => {
+      return { count: prevState.count + 1 }
+    });
+  }
+
+  render() {
+    const { count } = this.state
+    return(
+      <button onClick={this.incrementCount}>Click {count} times</button>
+    );
+  }
+}
+
+export default ClickCounter;
+
+--------------------------------
+HoverCounter.js
+
+import React, { Component } from "react";
+class HoverCounter extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState( prevState => {
+      return { count: prevState.count + 1 }
+    });
+  }
+
+  render() {
+    const { count } = this.state
+    return(
+      <h2 onMouseOver={this.incrementCount}>Hovered {count} times</h2>
+    );
+  }
+}
+
+export default HoverCounter;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- a button on browser, on that button it will log the number of times clicked
+
+- under the button there is a caption "Hovered x times", where x is the number 
+  of times the mouse hover over it, this is FREAKEN AWESOME!
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
