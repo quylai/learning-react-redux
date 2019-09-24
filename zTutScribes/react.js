@@ -3284,6 +3284,188 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 40 - Context (Part 3)";{
+/*---------------------------------------------------------------------------------
+#1 default value of Context
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ComponentC from "./components/ComponentC";
+import { UserProvider } from "./components/userContext";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <UserProvider value="Vishwas">
+          <ComponentC />
+        </UserProvider>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+userContext.js
+
+import React from "react";
+
+const UserContext = React.createContext("Codevolution");
+
+const UserProvider = UserContext.Provider;
+const UserConsumer = UserContext.Consumer;
+
+export { UserProvider, UserConsumer };
+
+--------------------------------
+ComponentC.js
+
+import React, { Component } from "react";
+import ComponentE from "./ComponentE";
+
+class ComponentC extends Component {
+  render() {
+    return <ComponentE />
+  }
+}
+
+export default ComponentC;
+
+--------------------------------
+ComponentE.js
+
+import React, { Component } from "react";
+import ComponentF from "./ComponentF";
+
+class ComponentE extends Component {
+  render() {
+    return <ComponentF />
+  }
+}
+
+export default ComponentE;
+
+--------------------------------
+ComponentF.js
+
+import React, { Component } from "react";
+import { UserConsumer } from "./userContext";
+
+class ComponentF extends Component {
+  render() {
+    return(
+      <UserConsumer>
+        {(username) => {
+          return <div>Hello {username}</div>
+        }}
+      </UserConsumer>
+    );
+  }
+}
+
+export default ComponentF;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+demonstrating the defaut value of "context"
+
+- in userContext.js, where string "Codevolution" resided is the place of
+  context default value
+
+- note that because it's "default", it only active if the value of context 
+  were not apply; observe that if in App.js, codes:
+        <UserProvider value="Vishwas">
+  and
+        </UserProvider>
+  where to be commented out, "Codevolution" would be seen output onto browser
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 context value supplied to intermediary component
+
+--------------------------------
+App.js
+
+// same
+
+--------------------------------
+userContext.js
+
+import React from "react";
+
+const UserContext = React.createContext("Codevolution");
+
+const UserProvider = UserContext.Provider;
+const UserConsumer = UserContext.Consumer;
+
+export { UserProvider, UserConsumer };
+export default UserContext;
+
+--------------------------------
+ComponentC.js
+
+// same
+
+--------------------------------
+ComponentE.js
+
+import React, { Component } from "react";
+import ComponentF from "./ComponentF";
+import UserContext from "./userContext";
+
+
+class ComponentE extends Component {
+  render() {
+    return(
+      <div>
+        Component E context {this.context}
+        <ComponentF />
+      </div>
+    );
+  }
+}
+
+ComponentE.contextType = UserContext;
+export default ComponentE;
+
+--------------------------------
+ComponentF.js
+
+// same
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- behavior:
+  output on the browser are:
+      Component E context Vishwas
+      Hello Vishwas
+  this concluded that component ComponentE accessed context value
+
+* this approach is simpler than the provider/consumer approach, but the limitation are:
+    - only intermediary "class" component could access it
+    - provider/consumer approach MUST occured at the end-point component
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
+
+
+
 
 //---------------------------------------------------------------------------------
 "React Hooks Tutorial - 7 - useEffect after render";{
