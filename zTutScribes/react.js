@@ -2233,6 +2233,232 @@ when the button is click, the input box would be in focus
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 31 - Portals";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+client/public/index.html
+
+under
+      <div id="root"></div>
+add
+      <div id="portal-root"></div>
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import PortalDemo from "./components/PortalDemo";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <PortalDemo />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+PortalDemo.js
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+function PortalDemo() {
+  return ReactDOM.createPortal(
+    <h1>Portals demo</h1>,
+    document.getElementById("portal-root")
+  );
+}
+export default PortalDemo;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+when app is running, PortalDemo component will attach itself to element "portal-root"
+
+- it is unclear what the use-case for this particular capability
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 32 - Error Boundary";{
+/*---------------------------------------------------------------------------------
+#1 applying "static getDerivedStateFromError"
+
+- error boundary - a class component that implements either one or both of the lifecycle methods getDerivedStateFromError or componentDidCatch becomes an error boundary
+
+- static getDerivedStateFromError(error) - used to render a fallback UI after an error is thrown
+- componentDidCatch(error, info) - used to log the error information
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import Hero from "./components/Hero";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ErrorBoundary>
+          <Hero heroName="Batman"/>
+        </ErrorBoundary>
+        
+        <ErrorBoundary>
+          <Hero heroName="Superman"/>
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <Hero heroName="Joker"/>
+        </ErrorBoundary>
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+Hero.js
+
+import React from "react";
+
+function Hero({heroName}) {
+  if(heroName === "Joker") {
+    throw new Error("Not a hero!");
+  }
+  return(
+    <div>
+      {heroName}
+    </div>
+  );
+}
+export default Hero;
+
+--------------------------------
+ErrorBoundary.js
+
+import React, { Component } from "react";
+class ErrorBoundary extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      hasError: false
+    }
+  }
+  
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true
+    }
+  }
+
+  render() {
+    if(this.state.hasError) {
+      return <h1>Something went wrong</h1>
+    }
+    return this.props.children
+  }
+}
+
+export default ErrorBoundary;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+this feature of react allow for alternative fallback component in the case of
+error; in this example, the error would be when heroName=Joker is pass onto
+component Hero
+
+- when app ran, the browser would display error; click 'x' on the top-right
+  corner of error screen, the browser should display
+      Batman
+      Superman
+      Something went wrong
+  if component ErrorBoundary not there, the screen would have been blank
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 applying "static getDerivedStateFromError" AND componentDidCatch
+
+--------------------------------
+App.js
+
+// same
+
+--------------------------------
+Hero.js
+
+// same
+
+--------------------------------
+ErrorBoundary.js
+
+import React, { Component } from "react";
+class ErrorBoundary extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      hasError: false
+    }
+  }
+  
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true
+    }
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log(info);
+  }
+
+  render() {
+    if(this.state.hasError) {
+      return <h1>Something went wrong</h1>
+    }
+    return this.props.children
+  }
+}
+
+export default ErrorBoundary;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+the only difference in this iteration is the addition of "componentDidCatch" 
+block, which is redundant; in "development" mode, React log all error to
+the console
+
+- when app ran, go to console of inspect; observe that the error
+  information repeated
+
+---------------------------------------------------------------------------------*/
+}
+
+
 
 
 
