@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-inport FRInput from "./FRInput";
+import FRInput from "./FRInput";
 
 class FRParentInput extends Component {
   render() {
