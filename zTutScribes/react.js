@@ -2114,7 +2114,96 @@ export default Input;
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 30 - Forwarding Refs";{
+/*---------------------------------------------------------------------------------
+#0 ...
 
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import FRParentInput from "./components/FRParentInput";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <FRParentInput />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+FRParentInput.js
+
+import React, { Component } from "react";
+import FRInput from "./FRInput";
+
+class FRParentInput extends Component {
+  
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
+  
+  clickHandler = () => {
+    this.inputRef.current.focus();
+  }
+
+  render() {
+    return(
+      <div>
+        <FRInput ref={this.inputRef} />
+        <button onClick={this.clickHandler}>Focus Input</button>
+      </div>
+    );
+  }
+}
+export default FRParentInput;
+
+--------------------------------
+FRInput.js
+
+import React from "react";
+
+const FRInput = React.forwardRef((props, ref) => {
+  return(
+    <div>
+      <input type="text" ref={ref} />
+    </div>
+  );
+});
+
+export default FRInput;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+when the button is click, the input box would be in focus
+  focus - cursor appear inside input box
+
+- in FRParentInput.js,
+      ref={this.inputRef}
+  created a link from FRParentInput to FRInput; req. that
+      this.inputRef = React.createRef()
+  in the constructor block
+
+- in FRInput.js
+  take note that, React.forwardRef() has its argument as an entire arrow function;
+  with React.forwardRef arg as it is, stand as #1 requirement; the #2 req. is the
+  attribute inside input
+      ref={ref}
+  with these two req., it open up the link from FRInput to FRParentInput
+  
+---------------------------------------------------------------------------------*/
+}
 
 
 
