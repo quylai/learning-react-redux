@@ -2815,6 +2815,345 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 36 - Render Props (Part 1)";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounterTwo from "./components/ClickCounterTwo";
+import HoverCounterTwo from "./components/HoverCounterTwo";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ClickCounterTwo />
+        <HoverCounterTwo />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+ClickCounterTwo.js
+
+import React, { Component } from "react";
+class ClickCounterTwo extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState(prevState => {
+      return {count: prevState.count + 1}
+    })
+  }
+
+  render() {
+    const { count } = this.state
+    return(
+      <button onClick={this.incrementCount}>Clicked {count} times</button>
+    );
+  }
+}
+
+export default ClickCounterTwo;
+
+--------------------------------
+HoverCounterTwo.js
+
+import React, { Component } from "react";
+class HoverCounterTwo extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState(prevState => {
+      return {count: prevState.count + 1}
+    })
+  }
+
+  render() {
+    const { count } = this.state
+    return(
+      <h2 onMouseOver={this.incrementCount}>Hovered {count} times</h2>
+    );
+  }
+}
+
+export default HoverCounterTwo;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- app behaves as follow:
+  two entity will be on the browser, a button and a caption
+  button's label will displays increment of 1 upon click
+  the caption will increment displays increment of 1 when hover over
+
+- the codings in this activity is to setup for the demo on the next
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 37 - Render Props (Part 2)";{
+/*---------------------------------------------------------------------------------
+#1 ...
+
+- render props
+  refers to a technique for "sharing code" between React components using a 
+  "prop whose value is a function"
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounterTwo from "./components/ClickCounterTwo";
+import HoverCounterTwo from "./components/HoverCounterTwo";
+import Counter from "./components/Counter";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <Counter
+          render={(count, incrementCount) => (
+            <ClickCounterTwo count={count} incrementCount={incrementCount} />
+          )} 
+        />
+
+        <Counter
+          render={(count, incrementCount) => (
+            <HoverCounterTwo count={count} incrementCount={incrementCount} />
+          )} 
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+Counter.js
+
+import React, { Component } from "react";
+
+class Counter extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState(prevState => {
+      return {count: prevState.count + 1}
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        {this.props.render(this.state.count, this.incrementCount)}
+      </div>
+    );
+  }
+}
+
+export default Counter;
+
+--------------------------------
+ClickCounterTwo.js
+
+import React, { Component } from "react";
+class ClickCounterTwo extends Component {
+
+  render() {
+    const { count, incrementCount } = this.props
+    return(
+      <button onClick={incrementCount}>Clicked {count} times</button>
+    );
+  }
+}
+
+export default ClickCounterTwo;
+
+--------------------------------
+HoverCounterTwo.js
+
+import React, { Component } from "react";
+class HoverCounterTwo extends Component {
+
+  render() {
+    const { count, incrementCount } = this.props
+    return(
+      <h2 onMouseOver={incrementCount}>Hovered {count} times</h2>
+    );
+  }
+}
+
+export default HoverCounterTwo;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- behavior:
+  two entity will be on the browser, a button and a caption
+  button's label will displays increment of 1 upon click
+  the caption will increment displays increment of 1 when hover over
+
+- Counter.js has 2-linkage, a "state" named "count" and a "props"
+  named "incrementCount";
+  - state "count" is process as defined in function "incrementCount"
+  - props "incrementCount" acts as a switch to invoke its defined function
+    "incrementCount"; the switch is triggered by the action done unto the DOM
+    element Counter is transforming
+
+- [ClickCounterTwo and HoverCounterTwo] are both transformee because Counter is
+  the transformer.... Opti... Pr...
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+# 2 transforming via as children
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounterTwo from "./components/ClickCounterTwo";
+import HoverCounterTwo from "./components/HoverCounterTwo";
+import Counter from "./components/Counter";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <Counter>
+          {(count, incrementCount) => (
+            <ClickCounterTwo count={count} incrementCount={incrementCount} />
+          )} 
+        </Counter>
+
+        <Counter>
+          {(count, incrementCount) => (
+            <HoverCounterTwo count={count} incrementCount={incrementCount} />
+          )} 
+        </Counter>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+Counter.js
+
+import React, { Component } from "react";
+
+class Counter extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState(prevState => {
+      return {count: prevState.count + 1}
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        {this.props.children(this.state.count, this.incrementCount)}
+      </div>
+    );
+  }
+}
+
+export default Counter;
+
+--------------------------------
+ClickCounterTwo.js
+
+// same
+
+--------------------------------
+HoverCounterTwo.js
+
+// same
+
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- behavior: same
+
+- in Counter.js
+  codes:
+      {this.props.children(this.state.count, this.incrementCount)}
+  "children" was "render"
+  
+- in App.js
+  codes:
+      <Counter>
+        {(count, incrementCount) => (
+          <ClickCounterTwo count={count} incrementCount={incrementCount} />
+        )} 
+      </Counter>
+  was
+      <Counter
+        render={(count, incrementCount) => (
+          <ClickCounterTwo count={count} incrementCount={incrementCount} />
+        )} 
+      />
+  likewise for component HoverCounterTwo
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
 
 
 
