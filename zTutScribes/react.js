@@ -19,6 +19,10 @@ App.js
 
 ---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
 
 ---------------------------------------------------------------------------------*/
 }
@@ -2067,7 +2071,6 @@ class FocusInput extends Component {
 
   constructor(props) {
     super(props)
-  
     this.componentRef = React.createRef()
   }
   
@@ -2110,6 +2113,31 @@ class Input extends Component {
   }
 }
 export default Input;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+when the button is click, the input box would be in focus
+  focus - cursor appear inside input box
+
+- in FocusInput.js
+  with the following 3-codes:
+      this.componentRef = React.createRef()
+      ref={this.componentRef}
+  they would open the link from FocusInput to Input; the
+      clickHandler = () => {
+        this.componentRef.current.focusInput()
+      }
+  is accessing function "focusInput" defined in child; this works because child
+  (Input.js) open the linkage
+
+- Input.js
+  with the the following 2-codes:
+      this.inputRef = React.createRef()
+      ref={this.inputRef}
+  the child is allowing linkage from its to the parent
 
 ---------------------------------------------------------------------------------*/
 }
@@ -2204,6 +2232,7 @@ when the button is click, the input box would be in focus
   
 ---------------------------------------------------------------------------------*/
 }
+
 
 
 
