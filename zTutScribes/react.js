@@ -2678,9 +2678,142 @@ app objective:
 - both component [ClickCounter and HoverCounter]:
   has their props destructured into [count and incrementCount]
 
+- be mindful of naming convention...
+
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 35 - Higher Order Components (Part 3)";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import ClickCounter from "./components/ClickCounter";
+import HoverCounter from "./components/HoverCounter";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <ClickCounter name="Vishwas" />
+        <HoverCounter />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+withCounter.js
+
+import React from "react";
+
+const withCounter = (WrappedComponent, incrementNumber) => {
+  class WithCounter extends React.Component {
+
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+        count: 0
+      }
+    }
+    
+    incrementCount = () => {
+      this.setState( prevState => {
+        return { count: prevState.count + incrementNumber }
+      });
+    }
+      
+    render() {
+      return( 
+        <WrappedComponent 
+          count={this.state.count}
+          incrementCount={this.incrementCount} 
+          { ... this.props}
+        />
+      );
+    }
+  }
+  return WithCounter;
+}
+
+export default withCounter;
+
+--------------------------------
+ClickCounter.js
+
+import React, { Component } from "react";
+import withCounter from "./withCounter";
+
+class ClickCounter extends Component {
+
+  render() {
+    const { count, incrementCount} = this.props;
+    return(
+      <button onClick={incrementCount}>
+        {this.props.name} Click {count} times
+      </button>
+    );
+  }
+}
+
+export default withCounter(ClickCounter, 5);
+
+--------------------------------
+HoverCounter.js
+
+import React, { Component } from "react";
+import withCounter from "./withCounter";
+
+class HoverCounter extends Component {
+
+  render() {
+    const { count, incrementCount} = this.props;
+    return(
+      <h2 onMouseOver={incrementCount}>
+        Hovered {count} times
+      </h2>
+    );
+  }
+}
+
+export default withCounter(HoverCounter, 7);
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- app behaves as follow:
+  two entity will be on the browser, a button and a caption
+  button's label will displays increment of 5 upon click
+  the caption will increment displays increment of 7 when hover over
+
+----
+
+* a side from the observational behaviors, notes the following:
+  
+  - in withCounter.js, code:
+        { ... this.props}
+    is what allow the passing of "name" props thru ClickCounter component
+
+  - in withCounter.js, the modification/insert of "incrementNumber" in codes:
+        const withCounter = (WrappedComponent, incrementNumber) => {
+        return { count: prevState.count + incrementNumber }
+    is what allow incremental value to be pass in as parameter at 
+    component level
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
