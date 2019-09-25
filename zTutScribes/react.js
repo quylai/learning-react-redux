@@ -1318,6 +1318,9 @@ ERROR HANDLING
 //---------------------------------------------------------------------------------
 "ReactJS Tutorial - 23 - Component Mounting Lifecycle Methods";{
 /*---------------------------------------------------------------------------------
+#0 demonstrating the order of execution in MOUNTING phase of a class comp.
+
+MOUNTING
 
 - constructor(props) - a special function that will get called whenever a new component is created
   - initializing state
@@ -1339,8 +1342,6 @@ ERROR HANDLING
 - componentDidMount()
   - invoked immediately after a component and all its children components have been rendered to the DOM
   - ideal place to interact with DOM or perform http-request
-
-#0 demonstrating the order of execution in mounting phase of a class comp.
 
 --------------------------------
 App.js
@@ -3461,10 +3462,205 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 41 - HTTP and React";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+React deals more with UI front-end rather than http-request to server back-end
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 42 - HTTP GET Request";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import PostList from "./components/PostList";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <PostList />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+PostList.js
+
+import React, { Component } from "react";
+import axios from "axios";
+
+class PostList extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      posts: [],
+      errorMsg: ""
+    }
+  }
+  
+  componentDidMount() {
+    axios.get("https://jsonplaceholder.typicode.com/posts8")
+    .then(response => {
+      console.log(response);
+      this.setState({posts: response.data});
+    })
+    .catch(error => {
+      console.log(error);
+      this.setState({errorMsg: "Error retreiving data"});
+    });
+  }
+
+  render() {
+    const { posts, errorMsg } = this.state;
+    return(
+      <div>
+        List of posts
+        {
+          posts.length ?
+          posts.map(post => <div key={post.id}>{post.title}</div>) :
+          null
+        }
+        { errorMsg ? <div>{errorMsg}</div> : null }
+      </div>
+    );
+  }
+}
+
+export default PostList;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+
+- behavior
+  app will make a http-GET at:
+      https://jsonplaceholder.typicode.com/posts
+  it then displays those posts onto the browser
+  
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"ReactJS Tutorial - 43 - HTTP Post Request";{
+/*---------------------------------------------------------------------------------
+#0 demonstrate http-POST request
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import PostForm from "./components/PostForm";
+
+class App extends Component {
+  render() {
+    return(
+      <div className="App">
+        <PostForm />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+--------------------------------
+PostForm.js
+
+import React, { Component } from "react";
+import axios from "axios";
+
+class PostForm extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      userId: "",
+      title: "",
+      body: ""
+    }
+  }
+  
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  submitHandler = e => {
+    e.preventDefault();
+    console.log(this.state);
+    axios.post("https://jsonplaceholder.typicode.com/posts", this.state)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    const {userId, title, body} = this.state
+    return(
+      <div>
+        <form onSubmit={this.submitHandler}>
+          <div>
+            <input
+              type="text" 
+              name="userId" 
+              value={userId} 
+              onChange={this.changeHandler}
+            />
+          </div>
+          <div>
+            <input 
+              type="text" 
+              name="title" 
+              value={title} 
+              onChange={this.changeHandler}
+            />
+          </div>
+          <div>
+            <input 
+              type="text" 
+              name="body" 
+              value={body} 
+              onChange={this.changeHandler}
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default PostForm;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
 
 
-
-
+---------------------------------------------------------------------------------*/
+}
 
 
 //---------------------------------------------------------------------------------

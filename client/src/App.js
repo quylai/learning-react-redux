@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import ComponentC from "./components/ComponentC";
-import { UserProvider } from "./components/userContext";
+import PostForm from "./components/PostForm";
 
 class App extends Component {
   render() {
     return(
       <div className="App">
-        <UserProvider value="Vishwas">
-          <ComponentC />
-        </UserProvider>
+        <PostForm />
       </div>
     );
   }
