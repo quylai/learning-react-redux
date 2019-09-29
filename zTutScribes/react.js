@@ -3988,12 +3988,36 @@ summary of useState
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 6 - useEffect Hook";{
+/*---------------------------------------------------------------------------------
+#0 ...
 
+for a timer in class component, it would have the following codes:
+
+componentDidMount() {
+  document.title = `You click ${this.state.count} times`;
+  this.interval = setInterval(this.tick, 1000);
+}
+componentDidUpdate() {
+  document.title = `You clicked ${this.state.count}` times;
+}
+componentWillUnmount() {
+  clearInterval(this.interval);
+}
+
+- useEffect of functional component would account for these three lifecycle
+  entities: componentDidMount, componentDidUpdate, and componentWillUnmount
+
+- purpose of useEffect is for side effects e.g. http-calls
+
+---------------------------------------------------------------------------------*/
+}
 
 //---------------------------------------------------------------------------------
 "React Hooks Tutorial - 7 - useEffect after render";{
 /*---------------------------------------------------------------------------------
-#1 useEffect equivalent in class
+#1 counter with class
 
 --------------------------------
 App.js
@@ -4004,49 +4028,53 @@ import ClassCounterOne from "./components/ClassCounterOne";
 
 function App() {
 
-  return( 
+  return(
     <div className="App">
       <ClassCounterOne />
     </div>
   );
 }
+
 export default App;
 
 --------------------------------
 ClassCounterOne.js
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class ClassCounterOne extends Component {
+
   constructor(props) {
     super(props)
+  
     this.state = {
       count: 0
     }
   }
   
   componentDidMount() {
-    document.title = `Clicked ${this.state.count} times`
+    document.title = `Clicked ${this.state.count} times`;
   }
-  componentDidUpdate(prevProps, prevState) {
-    document.title = `Clicked ${this.state.count} times`
+
+  componentDidUpdate(prevProps, preState) {
+    document.title = `Clicked ${this.state.count} times`;
   }
 
   render() {
     return(
       <div>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click {this.state.count.count} times
+          Click {this.state.count} times
         </button>
       </div>
-    )
+    );
   }
 }
 export default ClassCounterOne;
 
 ---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
-#2 useEffect of function
+#2 implementing useEffect
 
 --------------------------------
 App.js
@@ -4055,8 +4083,10 @@ import React from "react";
 import "./App.css";
 import HookCounterOne from "./components/HookCounterOne";
 
+
 function App() {
-  return( 
+
+  return(
     <div className="App">
       <HookCounterOne />
     </div>
@@ -4068,12 +4098,13 @@ export default App;
 --------------------------------
 HookCounterOne.js
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function HookCounterOne() {
 
   const[count, setCount] = useState(0);
-  useEffect(()=> {
+
+  useEffect(() => {
     document.title = `You clicked ${count} times`
   });
 
@@ -4083,10 +4114,20 @@ function HookCounterOne() {
     </div>
   );
 }
+
 export default HookCounterOne;
 
 ---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+counter display on the tab of app browser
+
+---------------------------------------------------------------------------------*/
 }
+
+
   
 
 
