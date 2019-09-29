@@ -3662,6 +3662,126 @@ app objective:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 1 - Introduction";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+- hooks - capability added in React 16.8 which allow you to use React features
+  without having to write class; i.e. hook is to function as state is to class
+
+* necessities that brought forth hooks, Classes:
+  - required syntax "this" keyword when used context of event handlers
+  - does not minify very well and hot reloading are unreliable
+  - reuseable stateful component logic are not intuitive in term of codings; HOC and render props were not enough
+  - components for complex scenarios can not be consolidated together
+    e.g. data fetching
+    data fetching codes in componentDidMount and componentDidUpdate
+    event listeners codes in componentDidMount and componentWillUnmount
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 2 - useState Hook";{
+/*---------------------------------------------------------------------------------
+#1 counter using class
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import ClassCounter from "./components/ClassCounter"
+
+function App() {
+
+  return(
+    <div className="App">
+      <ClassCounter />
+    </div>
+  );
+}
+export default App;
+
+--------------------------------
+ClassCounter.js
+
+import React, { Component } from "react";
+class ClassCounter extends Component {
+
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      count: 0
+    }
+  }
+  
+  incrementCount = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  render() {
+    return(
+      <div>
+        <button onClick={this.incrementCount}>Count {this.state.count}</button>
+      </div>
+    );
+  }
+}
+export default ClassCounter;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 counter using useState
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import HookCounter from "./components/HookCounter";
+
+function App() {
+
+  return(
+    <div className="App">
+      <HookCounter />
+    </div>
+  );
+}
+export default App;
+
+--------------------------------
+HookCounter.js
+
+import React, {useState} from "react";
+
+function HookCounter() {
+
+  const [count, setCount] = useState(0);
+  
+  return(
+    <div>
+      <button onClick={() => setCount(count + 1)}>Count {count}</button>
+    </div>
+  );
+}
+export default HookCounter;
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
+
+
+
+
+
 
 //---------------------------------------------------------------------------------
 "React Hooks Tutorial - 7 - useEffect after render";{

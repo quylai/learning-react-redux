@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
-import PostForm from "./components/PostForm";
+import HookCounter from "./components/HookCounter";
 
-class App extends Component {
-  render() {
-    return(
-      <div className="App">
-        <PostForm />
-      </div>
-    );
-  }
+function App() {
+
+  return(
+    <div className="App">
+      <HookCounter />
+    </div>
+  );
 }
-
 export default App;
