@@ -629,7 +629,6 @@ class EventBind extends Component {
     this.setState({
       message: "Goodbye"
     });
-
   }
 
   render() {
@@ -3773,13 +3772,221 @@ function HookCounter() {
 export default HookCounter;
 
 ---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+Rules of hooks:
+
+- "only call hooks at the top level"
+  : don't call hooks inside loops, condtions, or nested functions
+
+- "only call hooks from react functions"
+  : call them from within React functional components and not just any regular
+  Javascript function
+
+---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 3 - useState with previous state";{
+/*---------------------------------------------------------------------------------
+#0 counter with reset/increment/decrement
 
+--------------------------------
+App.js
 
+import React from "react";
+import "./App.css";
+import HookCounterTwo from "./components/HookCounterTwo";
 
+function App() {
 
+  return(
+    <div className="App">
+      <HookCounterTwo />
+    </div>
+  );
+}
+export default App;
 
+--------------------------------
+HookCounterTwo.js
+
+import React, { useState } from "react";
+
+function HookCounterTwo() {
+
+  const initialCount = 0;
+  const [count, setCount] = useState(initialCount);
+
+  const incrementFive = () => {
+    for(let i = 0; i < 5; i++) {
+      setCount(prevCount => prevCount + 1)
+    }
+  }
+
+  return(
+    <div>
+      Count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>Increment</button>
+      <button onClick={() => setCount(prevCount => prevCount - 1)}>Decrement</button>
+      <button onClick={incrementFive}>Increment 5</button>
+    </div>
+  );
+}
+export default HookCounterTwo;
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 4 - useState with object";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import HookCounterThree from "./components/HookCounterThree";
+
+function App() {
+
+  return(
+    <div className="App">
+      <HookCounterThree />
+    </div>
+  );
+}
+export default App;
+
+--------------------------------
+HookCounterThree.js
+
+import React, { useState } from "react";
+
+function HookCounterThree() {
+
+  const [name, setName] = useState({firstName: "", lastName: ""});
+
+  return(
+    <div>
+      <input 
+        type="text" 
+        value={name.firstName} 
+        onChange={e => setName({ ...name, firstName: e.target.value })}
+      />
+      <input 
+        type="text" 
+        value={name.lastName} 
+        onChange={e => setName({ ...name, lastName: e.target.value })}
+      />
+      <h2>{JSON.stringify(name)}</h2>
+
+      <h2>Your first name is - {name.firstName}</h2>
+      <h2>Your last name is - {name.lastName}</h2>
+    </div>
+  );
+}
+export default HookCounterThree;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+app objective:
+display two inputs field as it's typed
+
+about HookCounterThree.js
+
+- useState does not merge like "state" in class
+- "..." is called "spread" operator, part of Javascript syntax
+
+- for codes:
+      onChange={e => setName({ ...name, firstName: e.target.value })}
+  : upon changes in this field, copy everything in "name" object and also update
+  key "firstName"; this narration is apply as such in lastName field
+
+- disregard codes:
+      <h2>{JSON.stringify(name)}</h2>
+  it was there for the purpose of debugging; if bug were to be observe, 
+  modify "onChange" of field firstName as such,
+      onChange={e => setName({ firstName: e.target.value })}
+  similarly mod'd to lastName field
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 5 - useState with array";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import HookCounterFour from "./components/HookCounterFour";
+
+function App() {
+
+  return(
+    <div className="App">
+      <HookCounterFour />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+HookCounterFour.js
+
+import React, { useState } from "react";
+
+function HookCounterFour() {
+
+  const [items, setItems] = useState([])
+  const addItem = () => {
+    setItems([...items, {
+      id: items.length,
+      value: Math.floor(Math.random() * 10) + 1
+    }])
+  }
+
+  return(
+    <div>
+      <button onClick={addItem}>Add a number</button>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.value}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default HookCounterFour;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+summary of useState
+
+- useState hook is part of functional components
+- in classes, "state" is an object; with useState hook, "state" can be:
+  numbers, strings, booleans...
+
+- when destructuring useState: first element is the current value of the state,
+  second element is a state setter function
+
+- when dealing with objects or arrays, always make sure to spread state variable
+  and then call the setter function
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
