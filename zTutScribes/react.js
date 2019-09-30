@@ -4127,7 +4127,384 @@ counter display on the tab of app browser
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 8 - Conditionally run effects";{
+/*---------------------------------------------------------------------------------
+#1 conditional update with class
 
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import ClassCounterOne from "./components/ClassCounterOne";
+
+function App() {
+
+  return(
+    <div className="App">
+      <ClassCounterOne />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+ClassCounterOne.js
+
+import React, { Component } from "react";
+
+class ClassCounterOne extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0,
+      name: ""
+    }
+  }
   
+  componentDidMount() {
+    document.title = `Clicked ${this.state.count} times`;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+
+    if(prevState.count !== this.state.count) {
+      console.log("Updating document title");
+      document.title = `Clicked ${this.state.count} times`;
+    }
+  }
+
+  render() {
+    return(
+      <div>
+        <input 
+          type="text" 
+          value={this.state.name}
+          onChange={e => {this.setState({ name: e.target.value })
+          }}
+        />
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Click {this.state.count} times
+        </button>
+      </div>
+    );
+  }
+}
+export default ClassCounterOne;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+run app and observe in browser inspect; notice that the componentDidUpdate
+lifecyle only triggered when button is click, which is expected because that 
+is what defined in the if-statement in componentDidUpdate-block
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 demo on how to update state of interested value changed
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import HookCounterOne from "./components/HookCounterOne";
+
+function App() {
+
+  return(
+    <div className="App">
+      <HookCounterOne />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+HookCounterOne.js
+
+import React, { useState, useEffect } from "react";
+
+function HookCounterOne() {
+
+  const[count, setCount] = useState(0);
+  const[name, setName] = useState("");
+
+  useEffect(() => {
+    console.log("useEffect - Updating document title");
+    document.title = `You clicked ${count} times`;
+  }, [count]);
+
+  return(
+    <div>
+      <input type="text" value={name} onChange={e => setName(e.target.value)} />
+      <button onClick={() => setCount(count + 1)}>Click {count} times</button>
+    </div>
+  );
+}
+
+export default HookCounterOne;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+the object here is to only up state changes of button, not letter type in inputs;
+to acheive this, it is specified in second argument array of useEffect
+      useEffect(() => {
+        blah...asdf
+      }, [count]);
+
+take note alias "count" above and correlated with declaration in:
+      const[count, setCount] = useState(0);
+
+---------------------------------------------------------------------------------*/
+}
+  
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 9 - Run effects only once";{
+/*---------------------------------------------------------------------------------
+#0 using componentDidMount in class
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import ClassMouse from "./components/ClassMouse";
+
+function App() {
+
+  return(
+    <div className="App">
+      <ClassMouse />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+ClassMouse.js
+
+import React, { Component } from "react";
+class ClassMouse extends Component {
+
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      x: 0,
+      y: 0
+    }
+  }
+  
+  logMousePosition = e => {
+    this.setState({ x: e.clientX, y: e.clientY });
+  }
+
+  componentDidMount() {
+    window.addEventListener("mousemove", this.logMousePosition);
+  }
+
+  render() {
+    return(
+      <div>
+        X - {this.state.x} Y - {this.state.y}
+      </div>
+    );
+  }
+}
+export default ClassMouse;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+behavior:
+once the app ran, the browser is displaying coordinate of the mouse cursor;
+top-left is referenc as origin
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 class componentDidMount equivalent in functional comp. hook
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import HookMouse from "./components/HookMouse";
+
+function App() {
+
+  return(
+    <div className="App">
+      <HookMouse />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+HookMouse.js
+
+import React, { useState, useEffect } from "react";
+function HookMouse() {
+
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+
+  const logMousePosition = e => {
+    console.log("Mouse event");
+    setX(e.clientX);
+    setY(e.clientY);
+  } 
+
+  useEffect(() => {
+    console.log("useEffect called");
+    window.addEventListener("mousemove", logMousePosition)
+  }, []);
+
+  return(
+    <div>
+      Hooks X - {x} Y - {y}
+    </div>
+  );
+}
+export default HookMouse;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+- behavior:
+  once the app ran, the browser is displaying coordinate of the mouse cursor;
+  top-left is referenc as origin
+
+- then empty array in second argument of useEffect:
+      useEffect(() => {
+        console.log("useEffect called");
+        window.addEventListener("mousemove", logMousePosition)
+      }, []);
+
+  that empty array is equivalent to componentDidMount in class component
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 10 - useEffect with cleanup";{
+/*---------------------------------------------------------------------------------
+#0 removal of event listener
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import MouseContainer from "./components/MouseContainer";
+
+function App() {
+
+  return(
+    <div className="App">
+      <MouseContainer />
+    </div>
+  );
+}
+export default App;
+
+--------------------------------
+MouseContainer.js
+
+import React, { useState } from "react";
+import HookMouse from "./HookMouse";
+
+function MouseContainer() {
+
+  const [display, setDisplay] = useState(true);
+  return(
+    <div>
+      <button onClick={() => setDisplay(!display)}>Toggle display</button>
+      {display && <HookMouse />}
+    </div>
+  );
+}
+export default MouseContainer;
+
+--------------------------------
+HookMouse.js
+
+import React, { useState, useEffect } from "react";
+function HookMouse() {
+
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+
+  const logMousePosition = e => {
+    console.log("Mouse event");
+    setX(e.clientX);
+    setY(e.clientY);
+  } 
+
+  useEffect(() => {
+    console.log("useEffect called");
+    window.addEventListener("mousemove", logMousePosition)
+
+    return () => {
+      console.log("Component unmounting code");
+      window.removeEventListener("mousemove", logMousePosition);
+    }
+  }, []);
+
+  return(
+    <div>
+      Hooks X - {x} Y - {y}
+    </div>
+  );
+}
+export default HookMouse;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+- behavior:
+  on the browser there is a button, this button toggle the display of
+  mouse-pointer coordinates
+
+- MouseContainer.js is the button, HookMouse.js is component that tracks the
+  position;
+  the focus of this activity is to remove the event listener after the component
+  done (in this case, toggle display off);
+  observe codes below (in HookMouse.js):
+      useEffect(() => {
+        console.log("useEffect called");
+        window.addEventListener("mousemove", logMousePosition)
+
+        return () => {
+          console.log("Component unmounting code");
+          window.removeEventListener("mousemove", logMousePosition);
+        }
+      }, []);
+
+  the "return" of useEffect is designed to handle removal of event listener;
+  in class component, it is done in "componentWillUnmount" lifecycle
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
+
+
+
 
 
