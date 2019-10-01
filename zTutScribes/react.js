@@ -1277,7 +1277,9 @@ export default Form;
 //---------------------------------------------------------------------------------
 "ReactJS Tutorial - 22 - Component Lifecycle Methods";{
 /*---------------------------------------------------------------------------------
---------------------------------
+
+- overview of class component lifecycles, refer to 
+      zMisc/images/class-lifecycle-methods_react-16.4.png
 
 - mounting - when an instance of a component is being created and inserted into the DOM
 
