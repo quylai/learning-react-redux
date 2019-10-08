@@ -28,6 +28,132 @@ app objective:
 }
 
 //---------------------------------------------------------------------------------
+"router";{
+/*---------------------------------------------------------------------------------
+#0 using router
+
+--------------------------------
+App.js
+
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavTabs from "./components/NavTabs";
+import PageAcomp from "./components/pages/PageAcomp";
+import PageBcomp from "./components/pages/PageBcomp";
+import PageCcomp from "./components/pages/PageCcomp";
+
+const App = () => {
+
+  return(
+    <Router>
+      <div>
+        <NavTabs />
+        <Route exact path="/" component={PageAcomp} />
+        <Route exact path="/pageBtag" component={PageBcomp} />
+        <Route exact path="/pageCtag" component={PageCcomp} />
+      </div>
+    </Router>
+  );
+}
+export default App;
+
+--------------------------------
+components/NavTabs.js
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+function NavTabs() {
+  return(
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <Link 
+          to="/" 
+          className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+        >
+          PageA
+        </Link>
+      </li>      
+      <li className="nav-item">
+        <Link
+          to="/pageBtag"
+          className={window.location.pathname === "/pageBtag" ? "nav-link active" : "nav-link"}
+        >
+          PageB
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
+          to="/pageCtag"
+          className={window.location.pathname === "/pageCtag" ? "nav-link active" : "nav-link"}
+        >
+          PageB
+        </Link>
+      </li>
+    </ul>
+  );
+}
+export default NavTabs;
+
+--------------------------------
+components/pages/PageAcomp.js
+
+import React from "react";
+
+const PageAcomp = () => (
+  <div>
+    <h1>PageAcomp header</h1>
+    <p>
+      AAAA...
+    </p>
+  </div>
+);
+export default PageAcomp;
+
+--------------------------------
+components/pages/PageBcomp.js
+
+import React from "react";
+
+const PageBcomp = () => (
+  <div>
+    <h1>PageBcomp header</h1>
+    <p>
+      BBBB...
+    </p>
+  </div>
+);
+export default PageBcomp;
+
+--------------------------------
+components/pages/PageCcomp.js
+
+import React from "react";
+
+const PageCcomp = () => (
+  <div>
+    <h1>PageCcomp header</h1>
+    <p>
+      CCCC...
+    </p>
+  </div>
+);
+export default PageCcomp;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+- navigating pages using router, be sure to have react-router-dom in package.json
+
+- observed:
+  the visual tab of "nav-link active" not behaving correctly, may be fix if
+  those pages component turn into class rather than functional, revisit...
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
 "00-switch-statement";{
 /*---------------------------------------------------------------------------------
 #0 demo of switch-statement
