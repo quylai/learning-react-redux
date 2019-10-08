@@ -28,6 +28,158 @@ app objective:
 }
 
 //---------------------------------------------------------------------------------
+"00-switch-statement";{
+/*---------------------------------------------------------------------------------
+#0 demo of switch-statement
+
+--------------------------------
+App.js
+
+import React from "react";
+import ContainerZ from "./components/ContainerZ";
+
+const App = () => <ContainerZ />;
+
+export default App;
+
+--------------------------------
+components/ContainerZ.js
+
+import React, { Component } from "react";
+import NavTabs from "./NavTabs";
+import PageAcomp from "./pages/PageAcomp";
+import PageBcomp from "./pages/PageBcomp";
+import PageCcomp from "./pages/PageCcomp";
+
+class ContainerZ extends Component {
+  state = {
+    currentPageZ: "PageAtag"
+  };
+
+  handlePageChange = page => {
+    this.setState({ currentPageZ: page });
+  };
+
+  renderPageZ = (currentPageZ) => {
+    switch(this.state.currentPageZ) {
+      case "PageAtag":
+        return <PageAcomp />;
+      case "PageBtag":
+        return <PageBcomp />;
+      default:
+        return <PageCcomp />;
+    }
+  }
+
+  render() {
+    return(
+      <div>
+        <NavTabs
+          currentPage={this.state.currentPageZ}
+          handlePageChange={this.handlePageChange}
+        />
+        {this.renderPageZ()}
+      </div>
+    );
+  }
+}
+export default ContainerZ;
+
+--------------------------------
+components/NavTabs.js
+
+import React from "react";
+
+function NavTabs(props) {
+  return(
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <a
+          href="#bottomTaggedPageA"
+          onClick={() => props.handlePageChange("PageAtag")}
+          className={props.currentPage === "PageAtag" ? "nav-link active" : "nav-link"}
+        >
+          PageA
+        </a>
+      </li>
+      <li className="nav-item">
+        <a
+          href="#bottomTaggedPageB"
+          onClick={() => props.handlePageChange("PageBtag")}
+          className={props.currentPage === "About" ? "nav-link active" : "nav-link"}
+        >
+          PageB
+        </a>
+      </li>
+      <li className="nav-item">
+        <a
+          href="#bottomTaggedPageC"
+          onClick={() => props.handlePageChange("PageCtag")}
+          className={props.currentPage === "Blog" ? "nav-link active" : "nav-link"}
+        >
+          PageC
+        </a>
+      </li>
+    </ul>
+  );
+}
+export default NavTabs;
+
+--------------------------------
+components/pages/PageAcomp
+
+import React from "react";
+
+const PageAcomp = () => (
+  <div>
+    <h1>PageAcomp header</h1>
+    <p>
+      AAAA...
+    </p>
+  </div>
+);
+export default PageAcomp;
+
+--------------------------------
+components/pages/PageBcomp
+
+import React from "react";
+
+const PageBcomp = () => (
+  <div>
+    <h1>PageBcomp header</h1>
+    <p>
+      BBBB...
+    </p>
+  </div>
+);
+export default PageBcomp;
+
+--------------------------------
+components/pages/PageCcomp
+
+import React from "react";
+
+const PageCcomp = () => (
+  <div>
+    <h1>PageCcomp header</h1>
+    <p>
+      CCCC...
+    </p>
+  </div>
+);
+export default PageCcomp;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+STORY
+
+navigating pages uing switch-statement with Bootstrap NavTabs UI
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
 "ReactJS Tutorial - 05 - Functional Components";{
 /*---------------------------------------------------------------------------------
 #0 ...
