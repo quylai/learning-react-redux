@@ -1,9 +1,13 @@
 
 //---------------------------------------------------------------------------------
-"keyboard commands";{
+"info";{
 /*---------------------------------------------------------------------------------
 - Ctrl+k+0  folds all regions in the editor
 - Ctrl+k+j  unfolds all regions in the editor
+
+- tutorial at
+  https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
+
 ---------------------------------------------------------------------------------*/
 }
 
