@@ -319,7 +319,7 @@ import Greet from "./components/Greet";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Greet />
       </div>
@@ -471,7 +471,7 @@ import Counter from "./components/Counter";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Counter />
       </div>
@@ -512,7 +512,7 @@ class Counter extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <div>Count - {this.state.count}</div>
         <button onClick={() => this.incrementFive()}>Increment</button>
@@ -636,7 +636,7 @@ class Welcome extends Component {
 
   render() {
     const {name, heroName} = this.props;
-    return (
+    return(
       <h1>
         Welcome {name} a.k.a {heroName}
       </h1>
@@ -752,7 +752,7 @@ import EventBind from "./components/EventBind";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <EventBind />
       </div>
@@ -784,7 +784,7 @@ class EventBind extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <div>{this.state.message}</div>
         <button onClick={this.clickHandler.bind(this)}>Click</button>
@@ -937,7 +937,7 @@ import ParentComponent from "./components/ParentComponent";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <ParentComponent />
       </div>
@@ -968,7 +968,7 @@ class ParentComponent extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <ChildComponent greetHandler={this.greetParent} />
       </div>
@@ -1009,7 +1009,7 @@ import UserGreeting from "./components/UserGreeting";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <UserGreeting />
       </div>
@@ -1173,7 +1173,7 @@ import NameList from "./components/NameList";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <NameList />
       </div>
@@ -1248,7 +1248,7 @@ import NameList from "./components/NameList";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <NameList />
       </div>
@@ -1337,7 +1337,7 @@ import Stylesheet from "./components/Stylesheet";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <Stylesheet primary={true} />
       </div>
@@ -1354,7 +1354,7 @@ import "./myStyles.css";
 
 function Stylesheet(props) {
     let className = props.primary ? "primary" : "";
-  return (
+  return(
     <div>
       <h1 className={`${className} font-xl`}>Stylesheets</h1>
     </div>
@@ -1388,7 +1388,7 @@ import Inline from "./components/Stylesheet";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <Inline />
       </div>
@@ -1408,7 +1408,7 @@ const heading = {
 }
 
 function Inline() {
-  return (
+  return(
     <div>
       <h1 style={heading}>Inline</h1>
     </div>
@@ -1431,7 +1431,7 @@ import styles from "./components/appStyles.module.css";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <h1 className="error">Error</h1>
         <h1 className={styles.success}>Success</h1>
@@ -1473,7 +1473,7 @@ import Form from "./components/Form";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <Form />
       </div>
@@ -1520,7 +1520,7 @@ export class Form extends Component {
   }
 
   render() {
-    return (
+    return(
       <form onSubmit={this.handleSubmit}>
         <div>
           <label>Username</label>
@@ -1632,7 +1632,7 @@ import LifecycleA from "./components/LifecycleA";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <LifecycleA />
       </div>
@@ -1759,7 +1759,7 @@ import LifecycleA from "./components/LifecycleA";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <LifecycleA />
       </div>
@@ -1911,7 +1911,7 @@ import Table from "./components/Table";
 class App extends Component {
   
   render() {
-    return (
+    return(
       <div className="App">
         <Table />
       </div>
@@ -2004,7 +2004,7 @@ export default Column;
 
 ----
 
-* shallow comparison (SC)
+* shallow comparison(SC)
 
   - primitive types
     a SC b returns true if a and b have the same value and are of the same type
@@ -2091,7 +2091,7 @@ import React, { PureComponent } from "react";
 class PureComp extends PureComponent {
   render(){
     console.log("Pure Comp render");
-    return (
+    return(
       <div>
         Pure Component {this.props.name}
       </div>
@@ -4738,7 +4738,7 @@ function HookMouse() {
     console.log("useEffect called");
     window.addEventListener("mousemove", logMousePosition)
 
-    return () => {
+    return() => {
       console.log("Component unmounting code");
       window.removeEventListener("mousemove", logMousePosition);
     }
@@ -4769,7 +4769,7 @@ STORY
         console.log("useEffect called");
         window.addEventListener("mousemove", logMousePosition)
 
-        return () => {
+        return() => {
           console.log("Component unmounting code");
           window.removeEventListener("mousemove", logMousePosition);
         }
