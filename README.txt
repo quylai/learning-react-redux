@@ -29,9 +29,11 @@ To deploy, simply add and commit your changes, and push to Heroku. As is, the NP
 //=================================================================================
 ADDITIONAL NOTES:
 
-objective:
-learning react
-https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
+objective, learing...
+	react
+			https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
+	react-redux
+			https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK
 
 - majority of activity is happening in
 			client\src\components
