@@ -365,7 +365,7 @@ import Welcome from "./components/Welcome";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Welcome />
       </div>
@@ -539,7 +539,7 @@ import Greet from "./components/Greet";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Greet name="Diana" heroName="Wonder Woman" />
       </div>
@@ -578,7 +578,7 @@ import Greet from "./components/Greet";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Greet name="Diana" heroName="Wonder Woman" />
       </div>
@@ -618,7 +618,7 @@ import Welcome from "./components/Welcome";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <Welcome name="Bruce" heroName="Batman" />
       </div>
@@ -663,7 +663,7 @@ import FunctionClick from "./components/FunctionClick";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <FunctionClick />
       </div>
@@ -682,7 +682,7 @@ function FunctionClick() {
   function clickHandler() {
     console.log("Button clicked");
   }
-  return (
+  return(
     <div>
       <button onClick={clickHandler}>Click</button>
     </div>
@@ -704,7 +704,7 @@ import ClassClick from "./components/ClassClick";
 
 class App extends Component {
   render() {
-    return (
+    return(
       <div className="App">
         <ClassClick />
       </div>
@@ -725,14 +725,14 @@ class ClassClick extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <button onClick={this.clickHandler}>Click me</button>
       </div>
     );
   }
 }
-export default ClassClick
+export default ClassClick;
 
 ---------------------------------------------------------------------------------*/
 }
@@ -826,7 +826,7 @@ class EventBind extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <div>{this.state.message}</div>
         <button onClick={() => this.clickHandler()}>Click</button>
@@ -869,7 +869,7 @@ class EventBind extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <div>{this.state.message}</div>
         <button onClick={this.clickHandler}>Click</button>
@@ -910,7 +910,7 @@ class EventBind extends Component {
   }
 
   render() {
-    return (
+    return(
       <div>
         <div>{this.state.message}</div>
         <button onClick={this.clickHandler}>Click</button>
