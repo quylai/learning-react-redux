@@ -101,15 +101,20 @@ core concepts of redux:
 /*---------------------------------------------------------------------------------
 #0 ...
 
-sample codes of an "actions"
+- actions 
+  are payloads of information that send data from your application to your store;
+  they are the only source of information for the store; you send them to the
+  store using store.dispatch()
 
-    const BUY_CAKE = "BUY_CAKE";
-    function buyCake() {
-      return {
-        type: BUY_CAKE,
-        info: "First redux action"
+- sample codes of an "actions"
+
+      const BUY_CAKE = "BUY_CAKE";
+      function buyCake() {
+        return {
+          type: BUY_CAKE,
+          info: "First redux action"
+        }
       }
-    }
 
 ---------------------------------------------------------------------------------*/
 }
@@ -119,8 +124,11 @@ sample codes of an "actions"
 /*---------------------------------------------------------------------------------
 #0 ...
 
-- recall that the reducer is
-      (previousState, action) => newState  
+- reducers 
+  specify how the application's state changes in response to actions sent to 
+  the store; remember that actions only describe what happened, but don't 
+  describe how the application's state changes.
+  (previousState, action) => newState  
 
 - sample codes of reducers
       const initialState = {
@@ -146,13 +154,15 @@ sample codes of an "actions"
 /*---------------------------------------------------------------------------------
 #0 ...
 
-one store for the entire app, responsibilities:
-  - holde application state
-  - allows access to state via getState()
-  - allows state to be updated via dispatch(action)
-  - registers listeners via subscribe(listener)
-  - handles unregistering of listeners via the function returned
-    by subscribe(listener)
+- store
+  is the object that brings them together. The store has the following
+  responsibilities:    
+    - holds application state;
+    - allows access to state via getState();
+    - allows state to be updated via dispatch(action);
+    - registers listeners via subscribe(listener);
+    - handles unregistering of listeners via the function returned 
+      by subscribe(listener);
 
 - sample codes of redux-store:
 
