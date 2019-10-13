@@ -110,7 +110,38 @@ sample codes of an "actions"
         info: "First redux action"
       }
     }
-    
+
 ---------------------------------------------------------------------------------*/
 }
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 6 - Reducers";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+- recall that the reducer is
+      (previousState, action) => newState  
+
+- sample codes of reducers
+      const initialState = {
+        numOfCakes: 10
+      }
+
+      const reducer = (state = initialState, action) => {
+        switch(action.type) {
+          case BUY_CAKE: return {
+            ...state,
+            numOfCakes: state.numOfCakes - 1
+          }
+
+          default: return state
+        }
+      }
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
+
 
