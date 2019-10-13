@@ -141,7 +141,36 @@ sample codes of an "actions"
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 7 - Store";{
+/*---------------------------------------------------------------------------------
+#0 ...
 
+one store for the entire app, responsibilities:
+  - holde application state
+  - allows access to state via getState()
+  - allows state to be updated via dispatch(action)
+  - registers listeners via subscribe(listener)
+  - handles unregistering of listeners via the function returned
+    by subscribe(listener)
+
+- sample codes of redux-store:
+
+      const redux = require("redux");            
+      const createStore = redux.createStore; 
+
+      const store = createStore(reducer);
+      console.log("Initial state", store.getState());
+      const unsubscribe = store.subscribe(() => 
+        console.log("Updated state", store.getState()));
+      
+      store.dispatch(buyCake());
+      store.dispatch(buyCake());
+      store.dispatch(buyCake());
+      unsubscribe();
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
