@@ -377,8 +377,12 @@ unsubscribe();
   it reaches the reducer
 - use middleware for logging, crash reporting, performing asynchronous tasks, etc
 
+      createStore(reducer, applyMiddleware)
+- redux.createStore take in two (could be more) args: reducer and applyMiddleware
+  https://redux.js.org/api/createstore
+
 --------------------------------
-modded for middleware usage, in this case is "redux-logger"
+codes modded for middleware usage, in this case is "redux-logger"
 
 const redux = require("redux");
 const reduxLogger= require("redux-logger");
@@ -561,6 +565,109 @@ const reducer = (state = initial, action) => {
 }
 
 const store = createStore(reducer);
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 13 - Redux Thunk Middleware";{
+/*---------------------------------------------------------------------------------
+
+npm used in this activity:
+  - axios - requests to an API end point
+  - redux-thunk - a middleware used to define async action creators
+
+- action-creator returns an action, thunk-middleware allow action-creator to
+  return a function instead of an action-object
+
+- app-behavior
+  app is using "axios" to make http-GET to jsonplaceholder, then status
+  (defined by us) of that http call, "loading", "users", "error" (if any), is
+  output to VSC-console
+  (elaborate on this narrative with code snippets)
+
+--------------------------------
+asyncActions.js
+
+const redux = require("redux");
+const thunkMiddleware = require("redux-thunk").default;
+const axios = require("axios");
+const createStore = redux.createStore;
+const applyMiddleware = redux.applyMiddleware;
+
+const initialState = {
+  loading: false,
+  users: [],
+  error: ""
+}
+
+const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
+const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
+
+const fetchUsersRequest = () => {
+  return {
+    type: FETCH_USERS_REQUEST
+  }
+}
+
+const fetchUsersSuccess = users => {
+  return {
+    type: FETCH_USERS_SUCCESS,
+    payload: users
+  }
+}
+
+const fetchUsersFailure = error  => {
+  return {
+    type: FETCH_USERS_FAILURE,
+    payload: error
+  }
+}
+
+const reducer = (state = initialState, action) => {
+  switch(action.type) {
+    case FETCH_USERS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case FETCH_USERS_SUCCESS:
+      return {
+        loading: true,
+        users: action.payload,
+        error: ""
+      }
+
+    case FETCH_USERS_FAILURE:
+      return {
+        loading: false,
+        users: [],
+        error: action.payload
+      }
+    }
+}
+
+const fetchUsers = () => {
+  return function(dispatch) {
+    dispatch(fetchUsersRequest());
+    axios.get("https://jsonplaceholder.typicode.com/usersz")
+      .then(response => {
+        // response.data is the array of users
+        const users = response.data.map(user => user.id);
+        dispatch(fetchUsersSuccess(users));
+      })
+      .catch(error => {
+        // error.message is the error description
+        dispatch(fetchUsersFailure(error.message));
+      });
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+store.subscribe(() => { console.log(store.getState()) });
+store.dispatch(fetchUsers());
 
 ---------------------------------------------------------------------------------*/
 }
