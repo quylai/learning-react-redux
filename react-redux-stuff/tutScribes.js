@@ -1,6 +1,6 @@
 
 //---------------------------------------------------------------------------------
-"keyboard commands";{
+"react-redux-scribes, info";{
 /*---------------------------------------------------------------------------------
 - Ctrl+k+0  folds all regions in the editor
 - Ctrl+k+j  unfolds all regions in the editor

@@ -1,6 +1,6 @@
 
 //---------------------------------------------------------------------------------
-"info";{
+"react-scribes, info";{
 /*---------------------------------------------------------------------------------
 - Ctrl+k+0  folds all regions in the editor
 - Ctrl+k+j  unfolds all regions in the editor
@@ -521,7 +521,7 @@ class Counter extends Component {
         <div>Count - {this.state.count}</div>
         <button onClick={() => this.incrementFive()}>Increment</button>
       </div>
-    )
+    );
   }
 }
 export default Counter;
@@ -1362,7 +1362,7 @@ function Stylesheet(props) {
     <div>
       <h1 className={`${className} font-xl`}>Stylesheets</h1>
     </div>
-  )
+  );
 }
 
 export default Stylesheet;
@@ -1416,7 +1416,7 @@ function Inline() {
     <div>
       <h1 style={heading}>Inline</h1>
     </div>
-  )
+  );
 }
 export default Inline;
 
@@ -1548,7 +1548,7 @@ export class Form extends Component {
         </div>
         <button type="submit">Submit</button>
       </form>
-    )
+    );
   }
 }
 export default Form;
@@ -1932,13 +1932,13 @@ import Column from "./Column"
 
 function Table() {
   return(
-<table>
-  <tbody>
-    <tr>
-      <Column />
-    </tr>
-  </tbody>
-</table>
+    <table>
+      <tbody>
+        <tr>
+          <Column />
+        </tr>
+      </tbody>
+    </table>
   );
 }
 export default Table;
