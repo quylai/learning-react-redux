@@ -182,5 +182,32 @@ core concepts of redux:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 8 - Cakes and Ice Creams";{
+/*---------------------------------------------------------------------------------
+#0 narration for the upcoming codes
 
+- a shop selling two item, cakes and ice creams; there are two shopkeeper,
+  each tasked with keep inventories of their respective item
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 9 - Multiple Reducers";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+- cake shop
+  cakes stored on the shelf
+  shopkeeper-1 to handle BUY_CAKE from customer
+
+- sell ice creams
+  ice creams stored in the freezer
+  shopkeeper-2 to handle BUY_ICECREAM from customer
+
+- coded for "cake" and "ice cream" to have their own "actions" and "reducer"
+
+---------------------------------------------------------------------------------*/
+}
 
