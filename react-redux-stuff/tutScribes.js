@@ -457,3 +457,110 @@ unsubscribe();
 
 ---------------------------------------------------------------------------------*/
 }
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 12 - Async Actions";{
+/*---------------------------------------------------------------------------------
+#0 new app dealing with async actions
+
+--------------------------------
+whiteboard
+
+----
+state
+
+    state = {
+      loading: true,
+      data: [],
+      error: ""
+    }
+
+- loading - display a loading spinner in your component
+- data - list of users
+- error - display error to the user
+
+----
+actions
+
+- FETCH_USERS_REQUEST - fetch list of users
+- FETCH_USERS_SUCCESS - fetched successfully
+- FETCH_USERS_FAILURE - error fetching the data
+
+----
+reducers
+
+- case: FETCH_USERS_REQUEST
+        loading: true
+
+- case: FETCH_USERS_SUCCESS
+        loading: false
+        users: data ( from API )
+
+- case: FETCH_USERS_FAILURE
+        loading: false
+        error: error ( from API )
+
+--------------------------------
+coding (asyncActions.js)
+
+const redux = require("redux");
+const createStore = redux.createStore;
+
+const initialState = {
+  loading: false,
+  data: [],
+  error: ""
+}
+
+const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
+const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
+
+const fetchUsersRequest = () => {
+  return {
+    type: FETCH_USERS_REQUEST
+  }
+}
+
+const fetchUsersSuccess = users => {
+  return {
+    type: FETCH_USERS_SUCCES,
+    payload: users
+  }
+}
+
+const fetchUsersFailure = error  => {
+  return {
+    type: FETCH_USERS_FAILURE,
+    payload: error
+  }
+}
+
+const reducer = (state = initial, action) => {
+  switch(action.type) {
+    case FETCH_USERS_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case FETCH_USERS_SUCCESS:
+      return {
+        loading: true,
+        users: action.payload,
+        error: ""
+      }
+
+    case FETCH_USERS_FAILURE:
+      return {
+        loading: false,
+        users: [],
+        error: action.payload
+      }
+    }
+}
+
+const store = createStore(reducer);
+
+---------------------------------------------------------------------------------*/
+}
