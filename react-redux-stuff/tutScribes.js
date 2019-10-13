@@ -68,3 +68,33 @@ core concepts of redux:
 
 ---------------------------------------------------------------------------------*/
 }
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 4 - Three Principles";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+  #1
+- single source of truth
+  "the state of your whole application is stored in an object tree within 
+  a single store"
+
+  #2
+- state is read-only
+  "the only way to change the state is to emit an action, an object 
+  describing what happened"
+
+  #3
+- changes are made with pure functions
+  "to specify how the state tree is transformed by actions,
+  you write pure reducers"
+  reducer - (previousState, action) => newState  
+
+- refer to images "three-principles-overview" to see the interaction between
+  the three principles: action, reducer, redux-store 
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
