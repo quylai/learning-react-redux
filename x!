@@ -1,12 +1,0 @@
-[1mdiff --git a/react-redux-stuff/REDUX-DEMO/index.js b/react-redux-stuff/REDUX-DEMO/index.js[m
-[1mindex 26090db..5cc5582 100644[m
-[1m--- a/react-redux-stuff/REDUX-DEMO/index.js[m
-[1m+++ b/react-redux-stuff/REDUX-DEMO/index.js[m
-[36m@@ -20,6 +20,7 @@[m [mconst initialState = {[m
- const reducer = (state = initialState, action) => {[m
-   switch(action.type) {[m
-     case BUY_CAKE: return {[m
-[32m+[m[32m      ...state,[m[41m[m
-       numOfCakes: state.numOfCakes - 1[m
-     }[m
- [m
