@@ -29,22 +29,5 @@ To deploy, simply add and commit your changes, and push to Heroku. As is, the NP
 //=================================================================================
 ADDITIONAL NOTES:
 
-objective, learing...
-	react
-			https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
-
-- majority of activity is happening in
-			client\src\components
-
-- the shell of this app initiate from
-			zMisc\react-express.zip
-
-- code scribes is in folder zTutScribes
-
-- use keyboard (Visual Studio Codes) shortcut to fold/unfold codes:
-			Ctrl+k+0  folds all regions in the editor
-			Ctrl+k+j  unfolds all regions in the editor
-
---------------------------------
-ISSUE
+- reference reactScribes.js for codings of all react
 
