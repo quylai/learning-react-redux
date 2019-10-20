@@ -40,7 +40,7 @@ BEHAVIOR
              asyncActions.js demo async actions using redux-thunk
     - at 18 is the complete of app on concept of selling cake,
       due to the simplicity of app, some files only have a line of code
-    - onward, app will,
+    - at 21, app is
       subscribe to store and dispatch actions without connect();
       (React Hooks available started from React Redux v7.1)
  
@@ -1035,6 +1035,63 @@ export default store;
 #0 
 
 - created HooksCakeContainer.js
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 21 - useDispatch Hook";{
+/*---------------------------------------------------------------------------------
+#0 ...
+
+- though it's simpler using hook rather than "connect", there are caveat attached
+  (look into this ka-vee-yatch...)
+
+- differential from that of at 18:
+
+--------------------------------
+src\App.js
+
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import "./App.css";
+import CakeContainer from "./components/CakeContainer";
+import HooksCakeContainer from "./components/HooksCakeContainer";
+
+function App() {
+  return(
+    <Provider store={store}>
+      <div className="App">
+        <HooksCakeContainer />
+        <CakeContainer />
+      </div>
+    </Provider>
+  );
+}
+
+export default App;
+
+--------------------------------
+src\components\HooksCakeContainer.js
+
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { buyCake } from "../redux";
+
+function HooksCakeContainer() {
+
+  const numOfCakes = useSelector(state => state.numOfCakes);
+  const dispatch = useDispatch();
+
+  return(
+    <div>
+      <h2>Num of cakes - {numOfCakes}</h2>
+      <button onClick={() => dispatch(buyCake())}>Buy cake</button>
+    </div>
+  );
+}
+export default HooksCakeContainer;
 
 ---------------------------------------------------------------------------------*/
 }
