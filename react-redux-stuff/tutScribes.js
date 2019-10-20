@@ -8,7 +8,6 @@
 - tutorial at
   https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK
 
-
 ---------------------------------------------------------------------------------*/
 }
 
@@ -32,7 +31,20 @@ BEHAVIOR
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 1 - Introduction";{
+"React Redux Tutorials - 00";{
+/*---------------------------------------------------------------------------------
+
+* paste in here the codings of entire app at the conclusion of tutorial,
+  in the mean time:
+    - at 13: index.js demo vanila redux, 
+             asyncActions.js demo async actions using redux-thunk
+    - at 18 is the some-what-run-ok-state 
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 01 - Introduction";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -48,7 +60,7 @@ BEHAVIOR
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 2 - Getting Started";{
+"React Redux Tutorials - 02 - Getting Started";{
 /*---------------------------------------------------------------------------------
 
 no codes, just setup
@@ -57,7 +69,7 @@ no codes, just setup
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 3 - Three Core Concepts";{
+"React Redux Tutorials - 03 - Three Core Concepts";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -70,7 +82,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 4 - Three Principles";{
+"React Redux Tutorials - 04 - Three Principles";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -97,7 +109,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 5 - Actions";{
+"React Redux Tutorials - 05 - Actions";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -120,7 +132,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 6 - Reducers";{
+"React Redux Tutorials - 06 - Reducers";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -150,7 +162,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 7 - Store";{
+"React Redux Tutorials - 07 - Store";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -183,7 +195,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 8 - Cakes and Ice Creams";{
+"React Redux Tutorials - 08 - Cakes and Ice Creams";{
 /*---------------------------------------------------------------------------------
 #0 narration for the upcoming codes
 
@@ -194,7 +206,7 @@ core concepts of redux:
 }
 
 //---------------------------------------------------------------------------------
-"React Redux Tutorials - 9 - Multiple Reducers";{
+"React Redux Tutorials - 09 - Multiple Reducers";{
 /*---------------------------------------------------------------------------------
 #0 ...
 
@@ -573,18 +585,49 @@ const store = createStore(reducer);
 "React Redux Tutorials - 13 - Redux Thunk Middleware";{
 /*---------------------------------------------------------------------------------
 
-npm used in this activity:
-  - axios - requests to an API end point
-  - redux-thunk - a middleware used to define async action creators
+* note that asyncActions.js and index.js are standalone app, simply have
+  include the package.json below with pertinent npm used by the respective app:
+  asyncActions.js used npm: axios, redux, redux-thunk
+  index.js used npm: redux, redux-logger
+    - axios - requests to an API end point (http-calls)
+    - redux - managing app state 
+    - redux-logger - a middleware that transcribe onto terminal the 
+      transition of app state 
+    - redux-thunk - a middleware that lets you call action creators that return 
+      a function instead of an action object
 
-- action-creator returns an action, thunk-middleware allow action-creator to
-  return a function instead of an action-object
 
-- app-behavior
+- app-behavior of asyncActions.js
   app is using "axios" to make http-GET to jsonplaceholder, then status
   (defined by us) of that http call, "loading", "users", "error" (if any), is
   output to VSC-console
-  (elaborate on this narrative with code snippets)
+
+- app-behavior of index.js
+  in terminal, there will be output of app state changes; initial-state is, 
+  numOfCakes: 10 and numOfIceCreams: 20; final-state is, numOfCakes: 7 and
+  numOfIceCreams: 18
+
+--------------------------------
+package.json
+
+{
+  "name": "redux-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}
 
 --------------------------------
 asyncActions.js
@@ -652,7 +695,7 @@ const reducer = (state = initialState, action) => {
 const fetchUsers = () => {
   return function(dispatch) {
     dispatch(fetchUsersRequest());
-    axios.get("https://jsonplaceholder.typicode.com/usersz")
+    axios.get("https://jsonplaceholder.typicode.com/users")
       .then(response => {
         // response.data is the array of users
         const users = response.data.map(user => user.id);
@@ -669,5 +712,306 @@ const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 store.subscribe(() => { console.log(store.getState()) });
 store.dispatch(fetchUsers());
 
+--------------------------------
+index.js
+
+const redux = require("redux");
+const reduxLogger= require("redux-logger");
+
+const createStore = redux.createStore;
+const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+const logger = reduxLogger.createLogger();
+
+const BUY_CAKE = "BUY_CAKE";
+const BUY_ICECREAM = "BUY_ICECREAM";
+
+//----
+// coding for actions
+
+function buyCake() {
+  return {
+    type: BUY_CAKE,
+    info: "First redux action"
+  }
+}
+
+function buyIceCream() {
+  return {
+    type: BUY_ICECREAM
+  }
+}
+
+//----
+// coding for reducer
+
+const initialCakeState = {
+  numOfCakes: 10
+}
+
+const initialIceCreamState = {
+  numOfIceCreams: 20
+}
+
+const cakeReducer = (state = initialCakeState, action) => {
+  switch(action.type) {
+    case BUY_CAKE: return {
+      ...state,
+      numOfCakes: state.numOfCakes - 1
+    }
+    default: return state
+  }
+}
+
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+  switch(action.type) {
+    case BUY_ICECREAM: return {
+      ...state,
+      numOfIceCreams: state.numOfIceCreams - 1
+    }
+    default: return state
+  }
+}
+
+//----
+// coding for redux-store
+
+const rootReducer = combineReducers({
+  cake: cakeReducer,
+  iceCreamReducer: iceCreamReducer
+});
+const store = createStore(rootReducer, applyMiddleware(logger));
+console.log("Initial state", store.getState());
+const unsubscribe = store.subscribe(() => {});
+store.dispatch(buyCake());
+store.dispatch(buyCake());
+store.dispatch(buyCake());
+store.dispatch(buyIceCream());
+store.dispatch(buyIceCream());
+unsubscribe();
+
 ---------------------------------------------------------------------------------*/
 }
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 14 - React Redux Setup";{
+/*---------------------------------------------------------------------------------
+
+- to create react app, do command:
+      npx create-react-app react-redux-demo
+
+- installing necessary npm
+      npm i redux react-redux
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 15 - Actions";{
+/*---------------------------------------------------------------------------------
+
+- reference image
+      react-redux-demo-folders-structure.png
+  for the folder structure of this tutorial
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 16 - Reducers";{
+/*---------------------------------------------------------------------------------
+
+--------------------------------
+- created cakeReducer.js
+
+import { BUY_CAKE } from "./cakeTypes";
+
+const initialState = {
+  numOfCakes: 10
+}
+
+const cakeReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case BUY_CAKE: return {
+      ...state,
+      numOfCakes: state.numOfCakes - 1
+    }
+    default: return state
+  }
+}
+
+export default cakeReducer;
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 17 - Store";{
+/*---------------------------------------------------------------------------------
+
+- coded store.js and some modifications in app.js
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 18 - connect";{
+/*---------------------------------------------------------------------------------
+
+--------------------------------
+- expected behavior:
+  when running app, the browser would display caption
+  "Number of cakes - 10" and below it has a button label "Buy Cake"
+  on click of button, the numerical value will decrement by 1
+
+- files structured is shown in image,
+      react-redux-demo-folders-structure-18.png
+  below is all files mod'd thus far:
+
+--------------------------------1
+package.json
+
+{
+  "name": "react-redux-demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
+--------------------------------2
+src\App.js
+
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import "./App.css";
+import CakeContainer from "./components/CakeContainer";
+
+function App() {
+  return(
+    <Provider store={store}>
+      <div className="App">
+        <CakeContainer />
+      </div>
+    </Provider>
+  );
+}
+
+export default App;
+
+--------------------------------3
+src\components\CakeContainer.js
+
+import React from "react";
+import { connect } from "react-redux";
+import { buyCake } from "../redux";
+
+function CakeContainer(props) {
+  return (
+    <div>
+      <h2>Number of cakes - {props.numOfCakes}</h2>
+      <button onClick={props.buyCake}>Buy Cake</button>
+    </div>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+    numOfCakes: state.numOfCakes
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    buyCake: () => dispatch(buyCake())
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(CakeContainer);
+
+--------------------------------4
+src\redux\cake\cakeActions.js
+
+import { BUY_CAKE } from "./cakeTypes";
+
+export const buyCake = () => {
+  return {
+    type: BUY_CAKE
+  }
+}
+
+--------------------------------5
+src\redux\cake\cakeReducer.js
+
+import { BUY_CAKE } from "./cakeTypes";
+
+const initialState = {
+  numOfCakes: 10
+}
+
+const cakeReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case BUY_CAKE: return {
+      ...state,
+      numOfCakes: state.numOfCakes - 1
+    }
+    default: return state
+  }
+}
+
+export default cakeReducer;
+
+--------------------------------6
+src\redux\cake\cakeTypes.js
+
+export const BUY_CAKE = "BUY_CAKE";
+
+--------------------------------7
+src\redux\index.js
+
+export { buyCake } from "./cake/cakeActions";
+
+--------------------------------8
+src\redux\store.js
+
+import { createStore } from "redux";
+import cakeReducer from "./cake/cakeReducer";
+
+const store = createStore(cakeReducer);
+
+export default store;
+
+---------------------------------------------------------------------------------*/
+}
+
+
+
