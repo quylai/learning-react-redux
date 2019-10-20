@@ -38,7 +38,11 @@ BEHAVIOR
   in the mean time:
     - at 13: index.js demo vanila redux, 
              asyncActions.js demo async actions using redux-thunk
-    - at 18 is the some-what-run-ok-state 
+    - at 18 is the complete of app on concept of selling cake
+    - onward, app will,
+      subscribe to store and dispatch actions without connect();
+      (React Hooks available started from React Redux v7.1)
+ 
 
 ---------------------------------------------------------------------------------*/
 }
@@ -1013,5 +1017,15 @@ export default store;
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 19 - React Redux with Hooks";{
+/*---------------------------------------------------------------------------------
+#0 
+
+- subscribe to store and dispatch actions without connect();
+  (React Hooks available started from React Redux v7.1)
+
+---------------------------------------------------------------------------------*/
+}
 
 
