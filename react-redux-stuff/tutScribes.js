@@ -38,7 +38,8 @@ BEHAVIOR
   in the mean time:
     - at 13: index.js demo vanila redux, 
              asyncActions.js demo async actions using redux-thunk
-    - at 18 is the complete of app on concept of selling cake
+    - at 18 is the complete of app on concept of selling cake,
+      due to the simplicity of app, some files only have a line of code
     - onward, app will,
       subscribe to store and dispatch actions without connect();
       (React Hooks available started from React Redux v7.1)
@@ -1028,4 +1029,12 @@ export default store;
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Redux Tutorials - 20 - useSelector Hook";{
+/*---------------------------------------------------------------------------------
+#0 
 
+- created HooksCakeContainer.js
+
+---------------------------------------------------------------------------------*/
+}
