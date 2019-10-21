@@ -2409,17 +2409,15 @@ when the button is click, the input box would be in focus
   focus - cursor appear inside input box
 
 - in FocusInput.js
-  with the following 3-codes:
+  with 2-line of codes below:
       this.componentRef = React.createRef()
       ref={this.componentRef}
-  they would open the link from FocusInput to Input; the
+  they would open the link from FocusInput to Input comp; the
       clickHandler = () => {
         this.componentRef.current.focusInput()
       }
   is accessing function "focusInput" defined in child; this works because child
-  (Input.js) open the linkage
-
-- Input.js
+  (Input.js) has already opened its linkage
   with the the following 2-codes:
       this.inputRef = React.createRef()
       ref={this.inputRef}
