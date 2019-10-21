@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return(
       <div className="App">
-        <TestComp name="Bruce" heroName="Batman" />
+        <TestComp />
       </div>
     );
   }
