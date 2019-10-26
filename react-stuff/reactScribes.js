@@ -508,7 +508,7 @@ class Counter extends Component {
 
       // something like this with props.aValSomeWhere
       // count: prevState.count + props.aValSomeWhere
-    }), () = {
+    }), () => {
       // this is where callback happen
     });
     console.log(this.state.count);  // 5
