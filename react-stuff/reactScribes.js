@@ -503,8 +503,11 @@ class Counter extends Component {
 
   increment() {
 
-    this.setState(prevState => ({
+    this.setState((prevState, props) => ({
       count: prevState.count + 1
+
+      // something like this with props.aValSomeWhere
+      // count: prevState.count + props.aValSomeWhere
     }));
     console.log(this.state.count);  // 5
   }
@@ -3095,6 +3098,9 @@ app objective:
         return { count: prevState.count + incrementNumber }
     is what allow incremental value to be pass in as parameter at 
     component level
+
+- "Higher Order Components" are coded more abstract so that component could be
+  used for more than one purpose
 
 ---------------------------------------------------------------------------------*/
 }
