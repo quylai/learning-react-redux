@@ -369,7 +369,7 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
 
 const rootReducer = combineReducers({
   cake: cakeReducer,
-  iceCreamReducer: iceCreamReducer
+  iceCream: iceCreamReducer
 });
 const store = createStore(rootReducer);
 console.log("Initial state", store.getState());
@@ -464,7 +464,7 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
 
 const rootReducer = combineReducers({
   cake: cakeReducer,
-  iceCreamReducer: iceCreamReducer
+  iceCream: iceCreamReducer
 });
 const store = createStore(rootReducer, applyMiddleware(logger));
 console.log("Initial state", store.getState());
