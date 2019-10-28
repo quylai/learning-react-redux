@@ -4793,7 +4793,186 @@ STORY
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 11 - useEffect with incorrect dependency";{
+/*---------------------------------------------------------------------------------
+#1 using class for seconds interval counter
 
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import IntervalClassCounter from "./components/IntervalClassCounter";
+
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <IntervalClassCounter />
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+IntervalClassCounter.js
+
+import React, { Component } from "react";
+
+class IntervalClassCounter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    }
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(this.tick, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
+  tick = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  render() {
+    return(
+      <h1>{this.state.count}</h1>
+    );
+  }
+}
+
+export default IntervalClassCounter;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#2 using hook for seconds interval counter
+
+--------------------------------
+App.js
+
+import React, { Component } from "react";
+import "./App.css";
+import IntervalClassCounter from "./components/IntervalClassCounter";
+import IntervalHookCounter from "./components/IntervalHookCounter";
+
+class App extends Component {
+  
+  render() {
+    return(
+      <div className="App">
+        <IntervalClassCounter />
+        <IntervalHookCounter />
+
+      </div>
+    );
+  }
+}
+export default App;
+
+--------------------------------
+IntervalHookCounter.js
+
+import React, { useState, useEffect } from "react";
+
+function IntervalHookCounter() {
+  const [count, setCount] = useState(0); 
+
+  const tick = () => {
+    setCount(count + 1);
+  }
+
+  useEffect(() => {
+    const interval = setInterval(tick, 1000);
+    return() => {
+      clearInterval(interval);
+    }
+  }, [count]);  // inside that array is the dependency list
+
+  return(
+    <div>
+      {count}
+    </div>
+  );
+}
+export default IntervalHookCounter;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+notes:
+
+- the second argument of useEffect, the array
+      }, [count]);  //
+  in this case is variable count, is known as the dependency list
+
+- another way to make counter work without using dependency list is to mod
+  
+--------------------------------
+IntervalHookCounter.js
+
+import React, { useState, useEffect } from "react";
+
+function IntervalHookCounter() {
+  const [count, setCount] = useState(0); 
+
+  const tick = () => {
+    setCount(prevCount => prevCount + 1);  // mod'd here
+  }
+
+  useEffect(() => {
+    const interval = setInterval(tick, 1000);
+    return() => {
+      clearInterval(interval);
+    }
+  }, []);  // variable count took off
+
+  return(
+    <div>
+      {count}
+    </div>
+  );
+}
+export default IntervalHookCounter;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+#3 multiple useEffects (code snipet example)
+
+--------------------------------
+(code snipet example)
+
+function FriendStatusWithCounter(props) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  const [isOnline, setIsOnline] = useState(null);
+
+  useEffect(() => {
+    function handleStatusChange() {
+      setIsOnline(status.isOnline);
+    }
+
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return() => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+}
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
