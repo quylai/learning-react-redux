@@ -1,19 +1,6 @@
-import React, { Component } from "react";
-import "./App.css";
-import IntervalClassCounter from "./components/IntervalClassCounter";
-import IntervalHookCounter from "./components/IntervalHookCounter";
+import React from "react";
+import ContainerZ from "./components/ContainerZ";
 
-class App extends Component {
-  
-  render() {
-    return(
-      <div className="App">
-        <IntervalClassCounter />
-        <IntervalHookCounter />
+const App = () => <ContainerZ />;
 
-      </div>
-    );
-  }
-}
 export default App;
-

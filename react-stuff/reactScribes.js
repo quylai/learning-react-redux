@@ -258,7 +258,7 @@ function NavTabs(props) {
 export default NavTabs;
 
 --------------------------------
-components/pages/PageAcomp
+components/pages/PageAcomp.js
 
 import React from "react";
 
@@ -273,7 +273,7 @@ const PageAcomp = () => (
 export default PageAcomp;
 
 --------------------------------
-components/pages/PageBcomp
+components/pages/PageBcomp.js
 
 import React from "react";
 
@@ -288,7 +288,7 @@ const PageBcomp = () => (
 export default PageBcomp;
 
 --------------------------------
-components/pages/PageCcomp
+components/pages/PageCcomp.js
 
 import React from "react";
 
