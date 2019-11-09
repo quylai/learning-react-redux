@@ -4975,6 +4975,7 @@ function FriendStatusWithCounter(props) {
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
 "React Hooks Tutorial - 12 - Fetching data with useEffect Part 1";{
 /*---------------------------------------------------------------------------------
 ...
@@ -5041,6 +5042,7 @@ BEHAVIOR:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
 "React Hooks Tutorial - 13 - Fetching data with useEffect Part 2";{
 /*---------------------------------------------------------------------------------
 #0 asdf
@@ -5103,6 +5105,7 @@ BEHAVIOR:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
 "React Hooks Tutorial - 14 - Fetching data with useEffect Part 3";{
 /*---------------------------------------------------------------------------------
 ...
@@ -5169,6 +5172,126 @@ BEHAVIOR:
 ---------------------------------------------------------------------------------*/
 }
 
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 15 - useContext Hook Part 1";{
+/*---------------------------------------------------------------------------------
+...
 
+- context - provides a way to pass data through the component tree without having
+  to pass props down manually at every level
+  a useful case for this would be: passing authentication among components
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+BEHAVIOR:
+
+---------------------------------------------------------------------------------*/
+}
+
+//---------------------------------------------------------------------------------
+"React Hooks Tutorial - 16 - useContext Hook Part 2";{
+/*---------------------------------------------------------------------------------
+
+the nesting of component are as follow:
+    App
+      ComponentC
+        ComponentE
+          ComponentF
+objective is to pass value "Vishwas" and "Codevolution" to ComponentF;
+preparation is done in App, ComponentC and ComponentE nested its component as normal;
+in ComponentF, extraction of aforementioned values begans, a bit messy
+
+--------------------------------
+App.js
+
+import React from "react";
+import "./App.css";
+import ComponentC from "./components/ComponentC";
+
+export const UserContext = React.createContext();
+export const ChannelContext = React.createContext();
+
+function App() {
+  return(
+    <div className="App">
+      <UserContext.Provider value={"Vishwas"}>
+        <ChannelContext.Provider value={"Codevolution"}>
+          <ComponentC />
+        </ChannelContext.Provider>
+      </UserContext.Provider>
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+ComponentE.js
+
+import React from "react";
+import ComponentE from "./ComponentE"
+
+function ComponentC() {
+  return(
+    <div>
+      <ComponentE />
+    </div>
+  );
+}
+export default ComponentC;
+
+--------------------------------
+ComponentF.js
+
+import React from "react";
+import ComponentF from "./ComponentF"
+
+function ComponentE() {
+  return(
+    <div>
+      <ComponentF />
+    </div>
+  );
+}
+export default ComponentE;
+
+--------------------------------
+ComponentF.js
+
+import React from "react";
+import { UserContext, ChannelContext } from "../App";
+
+function ComponentF() {
+  return(
+    <div>
+      <UserContext.Consumer>
+        {user => {
+          return(
+            <ChannelContext.Consumer>
+              {channel => {
+                return(
+                  <div>
+                    User context value {user}, channel context value {channel}
+                  </div>
+                );
+              }}
+            </ChannelContext.Consumer>
+          ); 
+        }}
+      </UserContext.Consumer>
+    </div>
+  );
+}
+export default ComponentF;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+BEHAVIOR:
+
+- this is how it's coded prior to context-hook...
+  the use of context-hook is done on next vid
+
+---------------------------------------------------------------------------------*/
+}
 
 

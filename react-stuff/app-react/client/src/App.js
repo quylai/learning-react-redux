@@ -1,10 +1,18 @@
 import React from "react";
-import DataFetching from "./components/DataFetching";
+import "./App.css";
+import ComponentC from "./components/ComponentC";
+
+export const UserContext = React.createContext();
+export const ChannelContext = React.createContext();
 
 function App() {
   return(
     <div className="App">
-      <DataFetching />
+      <UserContext.Provider value={"Vishwas"}>
+        <ChannelContext.Provider value={"Codevolution"}>
+          <ComponentC />
+        </ChannelContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
