@@ -5103,7 +5103,71 @@ BEHAVIOR:
 ---------------------------------------------------------------------------------*/
 }
 
+"React Hooks Tutorial - 14 - Fetching data with useEffect Part 3";{
+/*---------------------------------------------------------------------------------
+...
 
+--------------------------------
+App.js
+
+import React from "react";
+import DataFetching from "./components/DataFetching";
+
+function App() {
+  return(
+    <div className="App">
+      <DataFetching />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+DataFetching.js
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+function DataFetching() {
+  const [post, setPost] = useState({});
+  const [id, setId] = useState(1); 
+  const [idFromButtonClick, setIdFromButtonClick] = useState(1);
+
+  const handleClick = () => {
+    setIdFromButtonClick(id);
+  }
+
+  useEffect(() => {
+    axios.get(`https://jsonplaceholder.typicode.com/posts/${idFromButtonClick}`)
+      .then(res => {
+        console.log(res);
+        setPost(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [idFromButtonClick]);
+
+  return(
+    <div>
+      <input type="text" value={id} onChange={e => setId(e.target.value)} />
+      <button type="button" onClick={handleClick}>Fetch Post</button>
+      <div>{post.title}</div>
+  </div>
+  );
+}
+
+export default DataFetching;
+    
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+BEHAVIOR:
+
+- the http-GET is now trigger by button click
+
+---------------------------------------------------------------------------------*/
+}
 
 
 
