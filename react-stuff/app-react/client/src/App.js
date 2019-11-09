@@ -1,6 +1,12 @@
 import React from "react";
-import ContainerZ from "./components/ContainerZ";
+import DataFetching from "./components/DataFetching";
 
-const App = () => <ContainerZ />;
+function App() {
+  return(
+    <div className="App">
+      <DataFetching />
+    </div>
+  );
+}
 
 export default App;

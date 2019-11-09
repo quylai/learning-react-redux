@@ -7,6 +7,7 @@
 
 - tutorial at
   https://www.youtube.com/playlist?list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3
+  https://www.youtube.com/playlist?list=PLC3y8-rFHvwisvxhZ135pogtX7_Oe3Q3A
 
 - for folder structure, reference folderStructure.png
 
@@ -179,9 +180,9 @@ components/ContainerZ.js
 
 import React, { Component } from "react";
 import NavTabs from "./NavTabs";
-import PageAcomp from "./pages/PageAcomp";
-import PageBcomp from "./pages/PageBcomp";
-import PageCcomp from "./pages/PageCcomp";
+import PageAcomp from "./PageAcomp";
+import PageBcomp from "./PageBcomp";
+import PageCcomp from "./PageCcomp";
 
 class ContainerZ extends Component {
   state = {
@@ -4973,6 +4974,72 @@ function FriendStatusWithCounter(props) {
 
 ---------------------------------------------------------------------------------*/
 }
+
+"React Hooks Tutorial - 12 - Fetching data with useEffect Part 1";{
+/*---------------------------------------------------------------------------------
+...
+
+--------------------------------
+App.js
+
+import React from "react";
+import DataFetching from "./components/DataFetching";
+
+function App() {
+  return(
+    <div className="App">
+      <DataFetching />
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------
+DataFetching.js
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+function DataFetching() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts")
+      .then(res => {
+        console.log(res);
+        setPosts(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  return(
+    <div>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+
+      ))}
+    </div>
+  );
+}
+export default DataFetching;
+
+---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+BEHAVIOR:
+
+- future update will assign data-fetching process to something call "suspense"
+
+- in DataFetching.js
+  the empty array of useEffect hook argument make the data-fetching only ONCE, 
+  else it would continually fetching data indefinitely 
+
+---------------------------------------------------------------------------------*/
+}
+
+
 
 
 
