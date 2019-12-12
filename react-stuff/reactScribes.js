@@ -1570,6 +1570,8 @@ export default Form;
 
 - overview of class component lifecycles, refer to 
       zMisc/images/class-lifecycle-methods_react-16.4.png
+  src:
+      http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 - mounting - when an instance of a component is being created and inserted into the DOM
 
@@ -1613,7 +1615,8 @@ ERROR HANDLING
 
 MOUNTING
 
-- constructor(props) - a special function that will get called whenever a new component is created
+- constructor(props) - a special function that will get called whenever a new
+  component is created
   - initializing state
   - binding the event handlers
   - can not cause side effects, such as making http-get/post/...
@@ -1631,7 +1634,8 @@ MOUNTING
   - children components lifecycle methods are also executed
 
 - componentDidMount()
-  - invoked immediately after a component and all its children components have been rendered to the DOM
+  - invoked immediately after a component and all its children components have
+    been rendered to the DOM
   - ideal place to interact with DOM or perform http-request
 
 --------------------------------
