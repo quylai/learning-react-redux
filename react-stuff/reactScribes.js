@@ -752,7 +752,7 @@ export default ClassClick;
 //---------------------------------------------------------------------------------
 "ReactJS Tutorial - 14 - Binding Event Handlers";{
 /*---------------------------------------------------------------------------------
-#1 binding in the render method, performance issue in large scale
+# 1/4 binding in the render method, performance issue in large scale
 
 --------------------------------
 App.js
@@ -808,7 +808,9 @@ export default EventBind;
 
 ---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
-#2 binding by using function arrow in render() method
+# 2/4 binding by using function arrow in render() method
+
+this way is most often seen in tutorial
 
 --------------------------------
 App.js
@@ -850,7 +852,7 @@ export default EventBind;
 
 ---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
-#3 binding in the class constructor, recommended
+# 3/4 binding in the class constructor, recommended
 
 --------------------------------
 App.js
@@ -893,7 +895,7 @@ export default EventBind;
 
 ---------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
-#4 binding by using class properties as arrow function, recommended
+# 4/4 binding by using class properties as arrow function, recommended
 
 --------------------------------
 App.js
@@ -1570,6 +1572,8 @@ export default Form;
 
 - overview of class component lifecycles, refer to 
       zMisc/images/class-lifecycle-methods_react-16.4.png
+  src:
+        http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
 - mounting - when an instance of a component is being created and inserted into the DOM
 
@@ -1613,7 +1617,8 @@ ERROR HANDLING
 
 MOUNTING
 
-- constructor(props) - a special function that will get called whenever a new component is created
+- constructor(props) - a special function that will get called whenever a new
+  component is created
   - initializing state
   - binding the event handlers
   - can not cause side effects, such as making http-get/post/...
@@ -1631,7 +1636,8 @@ MOUNTING
   - children components lifecycle methods are also executed
 
 - componentDidMount()
-  - invoked immediately after a component and all its children components have been rendered to the DOM
+  - invoked immediately after a component and all its children components have
+    been rendered to the DOM
   - ideal place to interact with DOM or perform http-request
 
 --------------------------------
@@ -4777,7 +4783,7 @@ STORY
   position;
   the focus of this activity is to remove the event listener after the component
   done (in this case, toggle display off);
-  observe codes below (in HookMouse.js):
+  in HookMouse.js, observe codes below:
       useEffect(() => {
         console.log("useEffect called");
         window.addEventListener("mousemove", logMousePosition)
@@ -4789,7 +4795,7 @@ STORY
       }, []);
 
   the "return" of useEffect is designed to handle removal of event listener;
-  in class component, it is done in "componentWillUnmount" lifecycle
+  for class component, it is done in "componentWillUnmount" lifecycle
 
 ---------------------------------------------------------------------------------*/
 }
@@ -4914,7 +4920,7 @@ notes:
 
 - the second argument of useEffect, the array
       }, [count]);  //
-  in this case is variable count, is known as the dependency list
+  variable count in this case, is known as the dependency list
 
 - another way to make counter work without using dependency list is to mod
   
@@ -5259,7 +5265,7 @@ export default ComponentE;
 ComponentF.js
 
 import React from "react";
-import {UserContext, ChannelContext} from "../App";
+import { UserContext, ChannelContext } from "../App";
 
 function ComponentF() {
   return(
@@ -5343,7 +5349,7 @@ ComponentE.js
 
 import React, {useContext} from "react";
 import ComponentF from "./ComponentF";
-import {UserContext, ChannelContext} from "../App";
+import { UserContext, ChannelContext } from "../App";
 
 function ComponentE() {
 
