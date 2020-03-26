@@ -1,0 +1,11 @@
+
+* error: Attempted import error: 'uuid' does not contain a default export (imported as 'uuid')
+  change:
+    import uuid from "uuid";
+  to:
+    import { v4 as uuidv4 } from "uuid";
+  and 
+    uuid.v4()
+  to:
+    uuidv4()
+

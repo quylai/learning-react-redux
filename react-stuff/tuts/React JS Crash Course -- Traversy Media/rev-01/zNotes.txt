@@ -1,0 +1,5 @@
+
+* initialized version from vid
+
+* objectives:
+    - add unique id on todo-task when added
